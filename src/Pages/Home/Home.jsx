@@ -1,9 +1,9 @@
-import React from 'react';
+import Hero from "./Hero/Hero";
 
 const Home = () => {
      return (
           <div>
-               <h2 className='text-4xl mt-16 text-center'>Home Page</h2>
+               <Hero></Hero>
           </div>
      );
 };
