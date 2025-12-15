@@ -3,11 +3,12 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Loader from "../../Components/Loader/Loader";
 
 const Login = () => {
-     const { loginUser, googleCreate } = useAuth()
+     const { loginUser, googleCreate, user } = useAuth()
      const [error, setError] = useState("");
      const navigate = useNavigate()
      const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +38,10 @@ const Login = () => {
                     console.log(error);
                     setError("Invalid email or password")
                });
+     }
+     if(user){
+          <Loader></Loader>
+          return <Navigate to={'/'}></Navigate>
      }
 
      return (

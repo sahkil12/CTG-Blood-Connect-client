@@ -3,12 +3,13 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import user from '../../assets/images/user.jpg'
+import userPic from '../../assets/images/user.jpg'
+import Loader from "../../Components/Loader/Loader";
 
 const Register = () => {
-     const { createUser, googleCreate, updateUserProfile } = useAuth()
+     const { createUser, googleCreate, updateUserProfile, user } = useAuth()
      const [error, setError] = useState("");
      const [nameError, setNameError] = useState("");
      const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +21,7 @@ const Register = () => {
           const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
-          const photo = user
+          const photo = userPic
           if (name.length < 5) {
                setNameError("Name must be at least 5 characters")
                return
@@ -55,6 +56,10 @@ const Register = () => {
                     // console.log(error);
                     setError(error.message)
                });
+     }
+     if(user){
+          <Loader></Loader>
+          return <Navigate to={'/'}></Navigate>
      }
 
      return (
