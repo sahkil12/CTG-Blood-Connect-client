@@ -43,19 +43,19 @@ const Navbar = () => {
                     <div className="flex-none">
                          {
                               user ? <div className="dropdown dropdown-end">
-                                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-16 border border-green-500 rounded-full">
+                                   <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 avatar">
+                                        <div className="border-2 flex justify-center items-center border-green-400 hover:border-green-600 rounded-full">
                                              <img
                                                   alt=""
-                                                  className='w-14'
+                                                  className='w-8 h-8'
                                                   src={user?.photoURL} />
                                         </div>
                                    </div>
                                    <ul
                                         tabIndex="-1"
-                                        className="menu menu-sm dropdown-content bg-gray-300 rounded-box z-1 mt-3 w-64 p-3 h-50 shadow flex justify-between flex-col">
+                                        className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 h-50 shadow flex justify-between flex-col">
                                        <span>
-                                         <p className='text-center font-semibold text-lg mb-5 mt-3'>{user?.displayName}</p>
+                                         <p className='text-center font-semibold text-xl mb-5 mt-3'>{user?.displayName}</p>
                                          <p className='text-center'>{user?.email}</p>
                                        </span>
                                         <button onClick={()=>logOutUser()} className='btn btn-primary mt-10'>Logout</button>
@@ -63,7 +63,6 @@ const Navbar = () => {
                                    </ul>
                               </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
                          }
-
                     </div>
                </div>
           </div>

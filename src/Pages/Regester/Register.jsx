@@ -5,9 +5,10 @@ import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import user from '../../assets/images/user.jpg'
 
 const Register = () => {
-     const { createUser, googleCreate } = useAuth()
+     const { createUser, googleCreate, updateUserProfile } = useAuth()
      const [error, setError] = useState("");
      const [nameError, setNameError] = useState("");
      const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +20,7 @@ const Register = () => {
           const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
-
+          const photo = user
           if (name.length < 5) {
                setNameError("Name must be at least 5 characters")
                return
@@ -30,8 +31,14 @@ const Register = () => {
           console.log(name, email, password);
           createUser(email, password)
                .then((res) => {
-                    navigate('/')
-                    // console.log(res);
+                    updateUserProfile({
+                         displayName: name,
+                         photoURL: photo,
+                    })
+                         .then((res) => {
+                              console.log(res);
+                              navigate("/");
+                         });
                })
                .catch((error) => {
                     // console.log(error);
@@ -61,6 +68,7 @@ const Register = () => {
                          <p className="text-gray-600 md:text-lg">
                               Create an account to donate blood and save lives
                          </p>
+                         {/* form */}
                          <form onSubmit={handleRegister} className="mt-7 mb-5">
                               {/* name */}
                               <fieldset className="flex flex-col space-y-2 mb-4">

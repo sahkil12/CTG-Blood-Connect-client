@@ -50,7 +50,7 @@ const Login = () => {
                          <p className="text-gray-600 md:text-lg">
                               Login to continue donating blood
                          </p>
-
+                         {/* form */}
                          <form onSubmit={handleLogin} className="mt-8 mb-5">
                               {/* name */}
                               <fieldset className="flex flex-col space-y-2 mb-4">
