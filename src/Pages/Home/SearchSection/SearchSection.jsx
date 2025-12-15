@@ -14,8 +14,8 @@ const SearchSection = () => {
                     <div className="bg-white rounded-xl p-6 md:p-8 shadow-md">
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               {/* Blood Group */}
-                              <select className="select select-bordered w-full text-lg">
-                                   <option disabled selected>
+                              <select defaultValue={'Select Your Blood Group'} className="select select-bordered w-full text-lg">
+                                   <option disabled={true} >
                                         Select Your Blood Group
                                    </option>
                                    <option>A+</option>
@@ -28,8 +28,8 @@ const SearchSection = () => {
                                    <option>O-</option>
                               </select>
                               {/* Area */}
-                              <select className="select select-bordered w-full text-lg">
-                                   <option disabled selected>
+                              <select defaultValue={'Select Your Area'} className="select select-bordered w-full text-lg">
+                                   <option disabled={true}>
                                         Select Your Area
                                    </option>
                                    <option>Anwara</option>
