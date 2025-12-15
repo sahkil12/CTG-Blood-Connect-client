@@ -8,7 +8,7 @@ const MainLayout = () => {
                <header>
                     <Navbar></Navbar>
                </header>
-               <main className="min-h-screen md:w-[85%] mx-auto">
+               <main className="min-h-[calc(100vh-371px)] md:w-[85%] mx-auto">
                     <Outlet></Outlet>
                </main>
                <Footer></Footer>

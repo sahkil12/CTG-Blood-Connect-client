@@ -35,7 +35,7 @@ const Navbar = () => {
                          </div>
                     </div>
                     <div className="flex-none">
-                         <button className='btn btn-sm md:btn-md bg-red-500 font-bold text-white'>Login</button>
+                         <button className='btn btn-sm md:btn-md btn-primary'>Login</button>
                     </div>
                </div>
           </div>

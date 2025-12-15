@@ -11,7 +11,7 @@ const SearchSection = () => {
                               Search donors by blood group and area
                          </p>
                     </div>
-                    <div className="bg-white rounded-xl p-6 md:p-8">
+                    <div className="bg-white rounded-xl p-6 md:p-8 shadow-md">
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               {/* Blood Group */}
                               <select className="select select-bordered w-full text-lg">

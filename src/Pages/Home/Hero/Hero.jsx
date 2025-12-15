@@ -3,11 +3,11 @@ import heroImg from "../../../assets/hero.jpg";
 const Hero = () => {
   return (
     <section className="bg-base-100">
-      <div className="my-10 rounded-xl shadow-sm px-4 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="my-10 rounded-xl px-4 md:px-10 py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left content */}
         <div>
           <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Donate Blood, Save Lives in Chittagong
+            Donate <span className="text-red-600">Blood</span>, Save Lives in Chittagong
           </h1>
           <p className="mt-7 text-gray-600 font-medium max-w-md">
             CTG Blood Connect helps people in Chittagong find blood donors quickly
