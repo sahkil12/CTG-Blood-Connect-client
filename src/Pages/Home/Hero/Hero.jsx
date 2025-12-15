@@ -3,10 +3,10 @@ import heroImg from "../../../assets/hero.jpg";
 const Hero = () => {
   return (
     <section className="bg-base-100">
-      <div className="my-10 border rounded-lg border-neutral-300 px-4 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="my-10 rounded-xl shadow-sm px-4 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left content */}
         <div>
-          <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight">
+          <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
             Donate Blood, Save Lives in Chittagong
           </h1>
           <p className="mt-7 text-gray-600 font-medium max-w-md">
@@ -28,7 +28,7 @@ const Hero = () => {
           <img
             src={heroImg}
             alt="Blood Donation"
-            className="max-w-md lg:max-w-xl w-full"
+            className="max-w-md lg:max-w-xl w-full rounded-l-lg"
           />
         </div>
       </div>
