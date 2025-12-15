@@ -3,13 +3,13 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
      const { loginUser, googleCreate } = useAuth()
      const [error, setError] = useState("");
-
+     const navigate = useNavigate()
      const handleLogin = (e) => {
           e.preventDefault();
           const email = e.target.email.value;
@@ -17,6 +17,7 @@ const Login = () => {
           console.log(email, password);
           loginUser(email, password)
                .then((res) => {
+                    navigate('/')
                     console.log(res);
                })
                .catch((error) => {
@@ -27,6 +28,7 @@ const Login = () => {
      const handleGoogleRegister = () => {
           googleCreate()
                .then((res) => {
+                    navigate('/')
                     console.log(res);
                })
                .catch((error) => {

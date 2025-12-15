@@ -3,34 +3,51 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 const Register = () => {
      const { createUser, googleCreate } = useAuth()
      const [error, setError] = useState("");
+     const [nameError, setNameError] = useState("");
+     const [showPassword, setShowPassword] = useState(false);
+
+     const navigate = useNavigate()
 
      const handleRegister = (e) => {
           e.preventDefault();
-          const name = e.target.name.value;
+          const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
+
+          if (name.length < 5) {
+               setNameError("Name must be at least 5 characters")
+               return
+          }
+          else {
+               setNameError("")
+          }
+
           console.log(name, email, password);
           createUser(email, password)
                .then((res) => {
-                    console.log(res);
+                    navigate('/')
+                    // console.log(res);
                })
                .catch((error) => {
-                    console.log(error);
-                    setError("Invalid email or password")
+                    // console.log(error);
+                    setError(error.message)
                });
      };
      const handleGoogleLogin = () => {
           googleCreate()
                .then((res) => {
-                    console.log(res);
+                    navigate('/')
+                    // console.log(res);
                })
                .catch((error) => {
-                    console.log(error);
-                    setError("Invalid email or password")
+                    // console.log(error);
+                    setError(error.message)
                });
      }
 
@@ -43,9 +60,10 @@ const Register = () => {
                               Create Your Account
                          </h2>
                          <p className="text-gray-600 md:text-lg">
-                              Login to continue donating blood
+                              Create an account to donate blood and save lives
                          </p>
                          <form onSubmit={handleRegister} className="mt-7 mb-5">
+                              {/* name */}
                               <fieldset className="flex flex-col space-y-2 mb-4">
                                    <label className="font-medium text-gray-800">Your Name</label>
                                    <input
@@ -55,7 +73,11 @@ const Register = () => {
                                         className="input border-2 py-6 lg:py-7 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-500"
                                         required
                                    />
+                                   {nameError && (
+                                        <p className="text-red-500 text-sm mt-1">{nameError}</p>
+                                   )}
                               </fieldset>
+                              {/* email */}
                               <fieldset className="flex flex-col space-y-2 mb-4">
                                    <label className="font-medium text-gray-800">Your Email</label>
                                    <input
@@ -66,15 +88,27 @@ const Register = () => {
                                         required
                                    />
                               </fieldset>
-                              <fieldset className="flex flex-col space-y-2 mb-2">
+                              {/* password */}
+                              <fieldset className="flex flex-col space-y-2 mb-2 relative">
                                    <label className="font-medium text-gray-800">Your Password</label>
                                    <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         name="password"
                                         placeholder="Password"
                                         className="input border-2 py-6 lg:py-7 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-500"
                                         required
                                    />
+                                   {/* show / hide icons */}
+                                   <span
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-4 top-[52px] cursor-pointer text-gray-500"
+                                   >
+                                        {showPassword ? (
+                                             <AiOutlineEyeInvisible size={22} />
+                                        ) : (
+                                             <AiOutlineEye size={22} />
+                                        )}
+                                   </span>
                               </fieldset>
                               <div className="flex justify-start pb-6 underline text-gray-500 font-medium">
                                    <a rel="noopener noreferrer" href="#">Forgot Password?</a>

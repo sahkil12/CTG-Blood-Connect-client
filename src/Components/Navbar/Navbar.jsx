@@ -4,10 +4,10 @@ import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
-     const { user } = useAuth()
+     const { user, logOutUser } = useAuth()
      console.log('nav', user);
      return (
-          <div className="w-full bg-base-200 rounded-b-3xl shadow-md py-2 px-5 mx-auto lg:w-[90%]">
+          <div className="w-full bg-base-200 rounded-b-3xl border border-neutral-300 shadow-md py-2 px-5 mx-auto lg:w-[90%]">
                <div className="navbar">
                     <div className="flex-none ">
                          <div className="drawer">
@@ -44,23 +44,22 @@ const Navbar = () => {
                          {
                               user ? <div className="dropdown dropdown-end">
                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-10 rounded-full">
+                                        <div className="w-16 border border-green-500 rounded-full">
                                              <img
                                                   alt=""
+                                                  className='w-14'
                                                   src={user?.photoURL} />
                                         </div>
                                    </div>
                                    <ul
                                         tabIndex="-1"
-                                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                        <li>
-                                             <a className="justify-between">
-                                                  Profile
-                                                  <span className="badge">New</span>
-                                             </a>
-                                        </li>
-                                        <li><a>Settings</a></li>
-                                        <li><a>Logout</a></li>
+                                        className="menu menu-sm dropdown-content bg-gray-300 rounded-box z-1 mt-3 w-64 p-3 h-50 shadow flex justify-between flex-col">
+                                       <span>
+                                         <p className='text-center font-semibold text-lg mb-5 mt-3'>{user?.displayName}</p>
+                                         <p className='text-center'>{user?.email}</p>
+                                       </span>
+                                        <button onClick={()=>logOutUser()} className='btn btn-primary mt-10'>Logout</button>
+
                                    </ul>
                               </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
                          }
