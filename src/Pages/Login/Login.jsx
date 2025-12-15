@@ -4,12 +4,14 @@ import Lottie from "lottie-react";
 import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
      const { loginUser, googleCreate } = useAuth()
      const [error, setError] = useState("");
      const navigate = useNavigate()
+     const [showPassword, setShowPassword] = useState(false);
+
      const handleLogin = (e) => {
           e.preventDefault();
           const email = e.target.email.value;
@@ -18,11 +20,11 @@ const Login = () => {
           loginUser(email, password)
                .then((res) => {
                     navigate('/')
-                    console.log(res);
+                    // console.log(res);
                })
                .catch((error) => {
-                    console.log(error);
-                    setError("Invalid email or password")
+                    // console.log(error);
+                    setError(error.message)
                });
      };
      const handleGoogleRegister = () => {
@@ -50,7 +52,7 @@ const Login = () => {
                          </p>
 
                          <form onSubmit={handleLogin} className="mt-8 mb-5">
-                               
+                              {/* name */}
                               <fieldset className="flex flex-col space-y-2 mb-4">
                                    <label className="font-medium text-gray-800">Your Email</label>
                                    <input
@@ -61,15 +63,27 @@ const Login = () => {
                                         required
                                    />
                               </fieldset>
-                              <fieldset className="flex flex-col space-y-2 mb-2">
+                              {/* password */}
+                              <fieldset className="flex flex-col space-y-2 mb-2 relative">
                                    <label className="font-medium text-gray-800">Your Password</label>
                                    <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         name="password"
                                         placeholder="Password"
                                         className="input border-2 py-6 lg:py-7 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-500"
                                         required
                                    />
+                                   {/* show / hide icons */}
+                                   <span
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-4 top-[52px] cursor-pointer text-gray-500"
+                                   >
+                                        {showPassword ? (
+                                             <AiOutlineEyeInvisible size={22} />
+                                        ) : (
+                                             <AiOutlineEye size={22} />
+                                        )}
+                                   </span>
                               </fieldset>
                               <div className="flex justify-start pb-6 underline text-gray-500 font-medium">
                                    <a rel="noopener noreferrer" href="#">Forgot Password?</a>

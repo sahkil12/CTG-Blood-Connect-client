@@ -27,7 +27,6 @@ const Register = () => {
           else {
                setNameError("")
           }
-
           console.log(name, email, password);
           createUser(email, password)
                .then((res) => {
