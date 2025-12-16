@@ -14,6 +14,7 @@ import Register from './Pages/Regester/Register.jsx';
 import About from './Pages/About/About.jsx';
 import Donors from './Pages/Donors/Donors.jsx';
 import BeADonor from '../src/Pages/BeADonar/BeADonar.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
+       <Toaster />
     </AuthProvider>
   </StrictMode>,
 )

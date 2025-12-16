@@ -58,7 +58,7 @@ const Navbar = () => {
                          </div>
                     </div>
                     {/*nav item */}
-                    <div className='flex w-full justify-between items-center '>
+                    <div className='flex w-full justify-between items-center gap-6'>
                          <div className="">
                               <Link to={'/'}>
                                    <div className='hidden lg:flex items-center'>
@@ -88,9 +88,7 @@ const Navbar = () => {
                                                        src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
                                              </div>
                                         </div>
-                                        <ul
-                                             tabIndex={-1}
-                                             className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow h-72">
+                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow h-72">
                                              <li className="text-center">
                                                   <p className="font-semibold text-lg">{user?.displayName}</p>
                                                   <p className="text-sm text-gray-600">{user?.email}</p>

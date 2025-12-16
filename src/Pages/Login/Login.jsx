@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Loader from "../../Components/Loader/Loader";
+import toast from "react-hot-toast";
 
 const Login = () => {
      const { loginUser, googleCreate, user } = useAuth()
@@ -21,6 +22,7 @@ const Login = () => {
           loginUser(email, password)
                .then(() => {
                     navigate('/')
+                    toast.success("You are Login Successfully")
                     // console.log(res);
                })
                .catch((error) => {
@@ -32,6 +34,8 @@ const Login = () => {
           googleCreate()
                .then(() => {
                     navigate('/')
+                    toast.success("You are Login Successfully")
+
                })
                .catch((error) => {
                     setError(error.message)
@@ -41,13 +45,12 @@ const Login = () => {
           <Loader></Loader>
           return <Navigate to={'/'}></Navigate>
      }
-
      return (
           <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-3 py-12">
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
                     {/* left form */}
                     <div className="p-2 md:px-10 md:py-16 max-w-xl w-full mx-auto">
-                         <h2 className="text-4xl lg:text-5xl mb-7 font-bold text-gray-900">
+                         <h2 className="text-3xl lg:text-5xl mb-5 md:mb-7 font-bold text-gray-900">
                               Welcome Back
                          </h2>
                          <p className="text-gray-600 md:text-lg">

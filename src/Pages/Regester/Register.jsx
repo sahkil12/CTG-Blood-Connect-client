@@ -7,6 +7,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import userPic from '../../assets/images/user.jpg'
 import Loader from "../../Components/Loader/Loader";
+import toast from "react-hot-toast";
 
 const Register = () => {
      const { createUser, googleCreate, updateUserProfile, user } = useAuth()
@@ -35,9 +36,9 @@ const Register = () => {
                          displayName: name,
                          photoURL: photo,
                     })
-                         .then((res) => {
-                              console.log(res);
-                              navigate("/");
+                         .then(() => {
+                              toast.success("Your Account is Successfully Created")
+                              navigate("/be-a-donor");
                          });
                })
                .catch((error) => {
@@ -48,28 +49,28 @@ const Register = () => {
      const handleGoogleLogin = () => {
           googleCreate()
                .then(() => {
-                    navigate('/')
-                    // console.log(res);
+                    navigate('/be-a-donor')
+                    toast.success("Your Account is Successfully Created")
                })
                .catch((error) => {
                     // console.log(error);
                     setError(error.message)
                });
      }
-     if(user){
+     if (user) {
           <Loader></Loader>
           return <Navigate to={'/'}></Navigate>
      }
 
      return (
-          <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-4 py-12">
+          <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-3 py-12">
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
                     {/* left form */}
-                    <div className="px-5 md:px-10 max-w-xl w-full mx-auto">
-                         <h2 className="text-4xl lg:text-5xl mb-7 font-bold text-gray-900">
+                    <div className="px-2 md:px-10 max-w-xl w-full mx-auto">
+                         <h2 className="text-3xl lg:text-5xl mb-5 md:mb-7 font-bold text-gray-900">
                               Create Your Account
                          </h2>
-                         <p className="text-gray-600 md:text-lg">
+                         <p className="text-gray-600 max-w-xs md:text-lg">
                               Create an account to donate blood and save lives
                          </p>
                          {/* form */}
