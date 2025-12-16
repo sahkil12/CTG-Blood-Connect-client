@@ -11,6 +11,8 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import Login from './Pages/Login/Login.jsx';
 import AuthLayout from './Layouts/AuthLayout.jsx';
 import Register from './Pages/Regester/Register.jsx';
+import About from './Pages/About/About.jsx';
+import Donors from './Pages/Donors/Donors.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>
       },
-
+      {
+        path: 'about',
+        element: <About></About>
+      },
+      {
+        path: 'donors',
+        element: <Donors></Donors>
+      }
     ]
   },
   {

@@ -8,6 +8,10 @@ const Navbar = () => {
      const handleLogout = () => {
           logOutUser().catch(err => console.log(err));
      };
+     const navLinkStyle = ({ isActive }) =>
+          isActive
+               ? "text-primary border-b-2 pb-1 font-semibold transition-all duration-200"
+               : "text-gray-800 hover:text-primary ";
      return (
           <div className="w-full bg-base-200 rounded-b-3xl border border-neutral-300 shadow-md py-2 px-5 mx-auto lg:w-[90%]">
                <div className="navbar">
@@ -48,43 +52,55 @@ const Navbar = () => {
                          </div>
                     </div>
                     {/*  */}
-                    <div className="flex-1">
-                         <Link to={'/'}>
-                              <div className='hidden lg:flex items-center'>
-                                   <img className='w-16 lg:w-20' src={logo} alt="logo" />
-                                   <h2 className='text-xl lg:text-2xl font-semibold'>CTG Blood Connect</h2>
-                              </div>
-                         </Link>
-                    </div>
-                    <div className="flex-none">
-                         {
-                              user ? <div className="dropdown dropdown-end">
-                                   <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 md:w-14 md:h-14 avatar">
-                                        <div className="border-2 flex justify-center items-center border-green-400 hover:border-green-600 rounded-full">
-                                             <img
-                                                  alt="user"
-                                                  className='w-10 h-10 md:w-12 md:h-12 rounded-full'
-                                                  src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
-                                        </div>
+                    <div className='flex w-full justify-between items-center '>
+                         <div className="">
+                              <Link to={'/'}>
+                                   <div className='hidden lg:flex items-center'>
+                                        <img className='w-16 lg:w-20' src={logo} alt="logo" />
+                                        <h2 className='text-xl lg:text-2xl font-semibold'>CTG Blood Connect</h2>
                                    </div>
-                                   <ul
-                                        tabIndex={-1}
-                                        className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow">
-                                        <li className="text-center">
-                                             <p className="font-semibold text-lg">{user?.displayName}</p>
-                                             <p className="text-sm text-gray-600">{user?.email}</p>
-                                        </li>
-                                        <li className="mt-8">
-                                             <button className="btn bg-neutral-200 mb-4 btn-md w-full">
-                                                  Profile
-                                             </button>
-                                             <button onClick={handleLogout} className="btn btn-primary btn-md w-full">
-                                                  Logout
-                                             </button>
-                                        </li>
-                                   </ul>
-                              </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
-                         }
+                              </Link>
+                         </div>
+                         {/*  */}
+                         <div className='hidden lg:flex '>
+                              <ul className='flex gap-8'>
+                                   <li><NavLink to={'/'} className={navLinkStyle}>Home</NavLink></li>
+                                   <li><NavLink to={'/donors'} className={navLinkStyle}>Donors</NavLink></li>
+                                   <li><NavLink to={'/about'} className={navLinkStyle}>About </NavLink></li>
+                                   {/* <li><NavLink to={'/dashboard'} className={navLinkStyle}>Dashboard</NavLink></li> */}
+                              </ul>
+                         </div>
+                         <div className="">
+                              <button className='btn bg-red-400 text-gray-100 mr-5'>Be a Donor</button>
+                              {
+                                   user ? <div className="dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 md:w-14 md:h-14 avatar">
+                                             <div className="border-2 flex justify-center items-center border-green-400 hover:border-green-600 rounded-full">
+                                                  <img
+                                                       alt="user"
+                                                       className='w-10 h-10 md:w-12 md:h-12 rounded-full'
+                                                       src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
+                                             </div>
+                                        </div>
+                                        <ul
+                                             tabIndex={-1}
+                                             className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow">
+                                             <li className="text-center">
+                                                  <p className="font-semibold text-lg">{user?.displayName}</p>
+                                                  <p className="text-sm text-gray-600">{user?.email}</p>
+                                             </li>
+                                             <li className="mt-8">
+                                                  <button className="btn bg-neutral-200 mb-4 btn-md w-full">
+                                                       Profile
+                                                  </button>
+                                                  <button onClick={handleLogout} className="btn btn-primary btn-md w-full">
+                                                       Logout
+                                                  </button>
+                                             </li>
+                                        </ul>
+                                   </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
+                              }
+                         </div>
                     </div>
                </div>
           </div>

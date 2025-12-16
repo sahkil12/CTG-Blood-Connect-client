@@ -15,10 +15,10 @@ const Hero = () => {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <button className="btn btn-primary rounded-full">
+            <button className="cursor-pointer px-6 font-medium py-2.5 bg-red-400 text-gray-100 rounded-full">
               Become a Donor
             </button>
-            <button className="btn btn-outline btn-primary rounded-full">
+            <button className="transition-all duration-300 cursor-pointer px-6 font-medium py-2.5 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-full">
               Find a Donor
             </button>
           </div>
