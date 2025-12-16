@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImg from "../../../assets/images/hero.jpg";
 
 const Hero = () => {
@@ -15,12 +16,12 @@ const Hero = () => {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <button className="cursor-pointer px-6 font-medium py-2.5 bg-red-400 text-gray-100 rounded-lg">
+            <Link to={'/be-a-donor'} className="cursor-pointer px-6 font-medium py-2.5 bg-red-400 text-gray-100 rounded-lg">
               Become a Donor
-            </button>
-            <button className="transition-all duration-300 cursor-pointer px-6 font-medium py-2.5 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-lg">
+            </Link>
+            <Link to={'/donors'} className="transition-all duration-300 cursor-pointer px-6 font-medium py-2.5 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-lg">
               Find a Donor
-            </button>
+            </Link>
           </div>
         </div>
         {/* Right image */}

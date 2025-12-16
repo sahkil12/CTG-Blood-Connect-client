@@ -30,7 +30,7 @@ const DonorCard = ({ donor }) => {
       {/* Call Button */}
       <a
         href={`tel:${phone}`}
-        className="btn btn-primary mt-6 flex items-center gap-2"
+        className="btn bg-emerald-400 mt-6 font-bold text-base py-5 flex items-center gap-2"
       >
         <FaPhoneAlt />
         Call Now

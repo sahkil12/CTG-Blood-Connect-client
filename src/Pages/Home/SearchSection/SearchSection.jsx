@@ -49,13 +49,11 @@ const SearchSection = () => {
                                    <option>Karnaphuli</option>
                               </select>
                               {/* Search Button */}
-                              <button className="btn btn-primary text-lg w-full">
+                              <button className="btn bg-red-400 text-base text-white w-full">
                                    Search Donors
                               </button>
-
                          </div>
                     </div>
-
                </div>
           </section>
      );

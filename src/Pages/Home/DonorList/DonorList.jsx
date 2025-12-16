@@ -36,7 +36,6 @@ const DonorList = () => {
                               <DonorCard key={donor.id} donor={donor} />
                          ))}
                     </div>
-
                </div>
           </section>
      );

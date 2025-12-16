@@ -11,8 +11,8 @@ const Navbar = () => {
      // small device links
      const drawerNavLinkStyle = ({ isActive }) =>
           isActive
-               ? "block w-full rounded-lg px-4 py-2 bg-red-400 text-white font-semibold"
-               : "block w-full rounded-lg px-4 py-2 bg-gray-300 border font-medium border-gray-300 hover:bg-gray-200"
+               ? "block w-full px-4 py-2 bg-red-400 text-white font-semibold"
+               : "block w-full px-4 py-2 border-b font-medium border-gray-300 hover:bg-gray-300"
      // large device links
      const navLinkStyle = ({ isActive }) =>
           isActive
@@ -40,7 +40,7 @@ const Navbar = () => {
                                                   <img className='w-14 md:w-16' src={logo} alt="logo" />
                                                   <h2 className='text-lg md:text-xl font-semibold'>CTG Blood Connect</h2>
                                              </div>
-                                             <div className='border mt-8 border-gray-600'></div>
+                                             <div className='border mt-8 border-gray-500'></div>
                                              <ul className=' mt-8 w-full gap-3 items-start text-black space-y-3'>
                                                   <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
                                                   <li><NavLink to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
