@@ -128,11 +128,11 @@ const Register = () => {
                                    <p className="text-red-500 text-sm mb-3">{error}</p>
                               )}
 
-                              <button className="btn btn-primary py-6 w-full text-lg">
+                              <button className="btn bg-red-400 text-white rounded-lg py-6 w-full text-lg">
                                    Register
                               </button>
                          </form>
-                         <span className="font-medium text-base text-gray-500">Already have an account? <Link to={'/login'}><b className="text-blue-600 hover:underline">Login</b></Link> </span>
+                         <span className="font-medium text-base text-gray-500">Already have an account? <Link to={'/login'}><b className="text-red-400 hover:underline">Login</b></Link> </span>
 
                          {/* Divider */}
                          <div className="divider my-6 text-gray-500">OR Register With </div>
@@ -141,7 +141,7 @@ const Register = () => {
                          < button
                               onClick={handleGoogleLogin}
                               className="flex rounded-md justify-center items-center gap-2 w-full text-base font-bold bg-gray-200 py-1.5 border text-black border-[#e5e5e5]" >
-                              <span className="py-2.5"> <FcGoogle size={22}></FcGoogle></span>
+                              <span className="py-2"> <FcGoogle size={20}></FcGoogle></span>
                               Register with Google
                          </button >
                     </div>

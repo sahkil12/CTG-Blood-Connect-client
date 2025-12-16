@@ -13,6 +13,7 @@ import AuthLayout from './Layouts/AuthLayout.jsx';
 import Register from './Pages/Regester/Register.jsx';
 import About from './Pages/About/About.jsx';
 import Donors from './Pages/Donors/Donors.jsx';
+import BeADonor from '../src/Pages/BeADonar/BeADonar.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'donors',
         element: <Donors></Donors>
+      },
+      {
+        path:'be-a-donor',
+        element: <BeADonor></BeADonor>
       }
     ]
   },

@@ -8,10 +8,16 @@ const Navbar = () => {
      const handleLogout = () => {
           logOutUser().catch(err => console.log(err));
      };
+     // small device links
+     const drawerNavLinkStyle = ({ isActive }) =>
+          isActive
+               ? "block w-full rounded-lg px-4 py-2 bg-red-400 text-white font-semibold"
+               : "block w-full rounded-lg px-4 py-2 bg-gray-300 border font-medium border-gray-300 hover:bg-gray-200"
+     // large device links
      const navLinkStyle = ({ isActive }) =>
           isActive
-               ? "text-primary border-b-2 pb-1 font-semibold transition-all duration-200"
-               : "text-gray-800 hover:text-primary ";
+               ? "text-red-400 border-b-2 pb-1 font-semibold transition-all duration-150"
+               : "text-gray-800 hover:text-red-400 transition-all duration-150";
      return (
           <div className="w-full bg-base-200 rounded-b-3xl border border-neutral-300 shadow-md py-2 px-5 mx-auto lg:w-[90%]">
                <div className="navbar">
@@ -35,23 +41,23 @@ const Navbar = () => {
                                                   <h2 className='text-lg md:text-xl font-semibold'>CTG Blood Connect</h2>
                                              </div>
                                              <div className='border mt-8 border-gray-600'></div>
-                                             <ul className=' font-semibold mt-8 w-full gap-3 items-start text-black space-y-3'>
-                                                  <li><NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>Home</NavLink></li>
-                                                  <li><NavLink to={'/donors'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>Donors</NavLink></li>
-                                                  <li><NavLink to={'/about'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>About</NavLink></li>
+                                             <ul className=' mt-8 w-full gap-3 items-start text-black space-y-3'>
+                                                  <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
+                                                  <li><NavLink to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
+                                                  <li><NavLink to={'/about'} className={drawerNavLinkStyle}>About</NavLink></li>
                                              </ul>
                                         </div>
                                         {/*  */}
                                         <div className='mb-2'>
                                              {
-                                                  user ? <button onClick={handleLogout} className='btn btn-primary w-full'>Logout</button> : <Link to={'/login'} className='btn btn-primary w-full'>Login</Link>
+                                                  user ? <button onClick={handleLogout} className='btn bg-red-400 text-white w-full'>Logout</button> : <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
                                              }
                                         </div>
                                    </div>
                               </div>
                          </div>
                     </div>
-                    {/*  */}
+                    {/*nav item */}
                     <div className='flex w-full justify-between items-center '>
                          <div className="">
                               <Link to={'/'}>
@@ -70,12 +76,12 @@ const Navbar = () => {
                                    {/* <li><NavLink to={'/dashboard'} className={navLinkStyle}>Dashboard</NavLink></li> */}
                               </ul>
                          </div>
-                         <div className="">
-                              <button className='btn bg-red-400 text-gray-100 mr-5'>Be a Donor</button>
+                         <div className="flex items-center gap-2 md:gap-4">
+                              <Link to={'/be-a-donor'} className='cursor-pointer px-4 text-xs md:text-base md:px-6 py-2.5 bg-red-400 rounded-lg text-gray-100 font-medium'>Be a Donor</Link>
                               {
                                    user ? <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 md:w-14 md:h-14 avatar">
-                                             <div className="border-2 flex justify-center items-center border-green-400 hover:border-green-600 rounded-full">
+                                             <div className="border-2 flex justify-center items-center border-red-300 hover:border-red-400 rounded-full">
                                                   <img
                                                        alt="user"
                                                        className='w-10 h-10 md:w-12 md:h-12 rounded-full'
@@ -84,21 +90,21 @@ const Navbar = () => {
                                         </div>
                                         <ul
                                              tabIndex={-1}
-                                             className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow">
+                                             className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow h-72">
                                              <li className="text-center">
                                                   <p className="font-semibold text-lg">{user?.displayName}</p>
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
-                                             <li className="mt-8">
+                                             <li className="mt-24">
                                                   <button className="btn bg-neutral-200 mb-4 btn-md w-full">
                                                        Profile
                                                   </button>
-                                                  <button onClick={handleLogout} className="btn btn-primary btn-md w-full">
+                                                  <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm w-full">
                                                        Logout
                                                   </button>
                                              </li>
                                         </ul>
-                                   </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
+                                   </div> : <Link to={'/login'}>  <button className='cursor-pointer transition-all duration-300 px-5 text-xs md:text-base md:px-7 font-medium py-2 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-lg'>Login</button></Link>
                               }
                          </div>
                     </div>

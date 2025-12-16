@@ -43,10 +43,10 @@ const Login = () => {
      }
 
      return (
-          <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-4 py-12">
+          <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-3 py-12">
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
                     {/* left form */}
-                    <div className="p-8 md:px-10 md:py-16 max-w-xl w-full mx-auto">
+                    <div className="p-2 md:px-10 md:py-16 max-w-xl w-full mx-auto">
                          <h2 className="text-4xl lg:text-5xl mb-7 font-bold text-gray-900">
                               Welcome Back
                          </h2>
@@ -95,11 +95,11 @@ const Login = () => {
                                    <p className="text-red-500 text-sm mb-3">{error}</p>
                               )}
 
-                              <button className="btn btn-primary py-6 w-full text-lg">
+                              <button className="btn bg-red-400 text-white rounded-lg py-6 w-full text-lg">
                                    Login
                               </button>
                          </form>
-                         <span className="font-medium text-base text-gray-500">Don't have an account? <Link to={'/register'}><b className="text-blue-600 hover:underline">Register</b></Link> </span>
+                         <span className="font-medium text-base text-gray-500">Don't have an account? <Link to={'/register'}><b className="text-red-400 hover:underline">Register</b></Link> </span>
 
                          {/* Divider */}
                          <div className="divider my-6 text-gray-500">OR Login With </div>
@@ -107,8 +107,8 @@ const Login = () => {
                          {/* Google Login */}
                          < button
                               onClick={handleGoogleRegister}
-                              className="flex rounded-md justify-center items-center gap-2 w-full text-base font-bold bg-gray-200 py-1.5 border text-black border-[#e5e5e5]" >
-                              <span className="py-2.5"> <FcGoogle size={22}></FcGoogle></span>
+                              className="flex rounded-lg justify-center items-center gap-2 w-full text-base font-bold bg-gray-200 py-1.5 border text-black border-[#e5e5e5]" >
+                              <span className="py-2"> <FcGoogle size={20}></FcGoogle></span>
                               Login with Google
                          </button >
                     </div>
