@@ -5,7 +5,9 @@ import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
-     console.log('nav', user);
+     const handleLogout = () => {
+          logOutUser().catch(err => console.log(err));
+     };
      return (
           <div className="w-full bg-base-200 rounded-b-3xl border border-neutral-300 shadow-md py-2 px-5 mx-auto lg:w-[90%]">
                <div className="navbar">
@@ -43,23 +45,29 @@ const Navbar = () => {
                     <div className="flex-none">
                          {
                               user ? <div className="dropdown dropdown-end">
-                                   <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 avatar">
+                                   <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 md:w-14 md:h-14 avatar">
                                         <div className="border-2 flex justify-center items-center border-green-400 hover:border-green-600 rounded-full">
                                              <img
-                                                  alt=""
-                                                  className='w-8 h-8'
-                                                  src={user?.photoURL} />
+                                                  alt="user"
+                                                  className='w-10 h-10 md:w-12 md:h-12 rounded-full'
+                                                  src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
                                         </div>
                                    </div>
                                    <ul
-                                        tabIndex="-1"
-                                        className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 h-50 shadow flex justify-between flex-col">
-                                       <span>
-                                         <p className='text-center font-semibold text-xl mb-5 mt-3'>{user?.displayName}</p>
-                                         <p className='text-center'>{user?.email}</p>
-                                       </span>
-                                        <button onClick={()=>logOutUser()} className='btn btn-primary mt-10'>Logout</button>
-
+                                        tabIndex={-1}
+                                        className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow">
+                                        <li className="text-center">
+                                             <p className="font-semibold text-lg">{user?.displayName}</p>
+                                             <p className="text-sm text-gray-600">{user?.email}</p>
+                                        </li>
+                                        <li className="mt-8">
+                                             <button className="btn bg-neutral-200 mb-4 btn-md w-full">
+                                                  Profile
+                                             </button>
+                                             <button onClick={handleLogout} className="btn btn-primary btn-md w-full">
+                                                  Logout
+                                             </button>
+                                        </li>
                                    </ul>
                               </div> : <Link to={'/login'}>  <button className='btn btn-sm md:btn-md btn-primary'>Login</button></Link>
                          }

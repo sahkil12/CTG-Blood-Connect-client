@@ -13,7 +13,6 @@ const Register = () => {
      const [error, setError] = useState("");
      const [nameError, setNameError] = useState("");
      const [showPassword, setShowPassword] = useState(false);
-
      const navigate = useNavigate()
 
      const handleRegister = (e) => {
@@ -31,7 +30,7 @@ const Register = () => {
           }
           console.log(name, email, password);
           createUser(email, password)
-               .then((res) => {
+               .then(() => {
                     updateUserProfile({
                          displayName: name,
                          photoURL: photo,
@@ -48,7 +47,7 @@ const Register = () => {
      };
      const handleGoogleLogin = () => {
           googleCreate()
-               .then((res) => {
+               .then(() => {
                     navigate('/')
                     // console.log(res);
                })

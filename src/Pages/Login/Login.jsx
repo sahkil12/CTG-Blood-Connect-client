@@ -19,7 +19,7 @@ const Login = () => {
           const password = e.target.password.value;
           console.log(email, password);
           loginUser(email, password)
-               .then((res) => {
+               .then(() => {
                     navigate('/')
                     // console.log(res);
                })
@@ -30,16 +30,14 @@ const Login = () => {
      };
      const handleGoogleRegister = () => {
           googleCreate()
-               .then((res) => {
+               .then(() => {
                     navigate('/')
-                    console.log(res);
                })
                .catch((error) => {
-                    console.log(error);
-                    setError("Invalid email or password")
+                    setError(error.message)
                });
      }
-     if(user){
+     if (user) {
           <Loader></Loader>
           return <Navigate to={'/'}></Navigate>
      }
