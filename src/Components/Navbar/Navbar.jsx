@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.png'
 import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
@@ -23,11 +23,25 @@ const Navbar = () => {
                               {/* drawer */}
                               <div className="drawer-side">
                                    <label htmlFor="my-drawer-1" aria-label="close sidebar" className="drawer-overlay"></label>
-                                   <div className="menu bg-gray-200 min-h-full w-72 md:w-80 p-2">
-                                        {/* Sidebar content here */}
-                                        <div className='flex items-center justify-center'>
-                                             <img className='w-14 md:w-16' src={logo} alt="logo" />
-                                             <h2 className='text-lg md:text-xl font-semibold'>CTG Blood Connect</h2>
+                                   <div className="menu bg-gray-200 min-h-full w-72 md:w-80 px-4 py-6 flex flex-col justify-between">
+                                        <div>
+                                             {/* Sidebar content here */}
+                                             <div className='flex items-center'>
+                                                  <img className='w-14 md:w-16' src={logo} alt="logo" />
+                                                  <h2 className='text-lg md:text-xl font-semibold'>CTG Blood Connect</h2>
+                                             </div>
+                                             <div className='border mt-8 border-gray-600'></div>
+                                             <ul className=' font-semibold mt-8 w-full gap-3 items-start text-black space-y-3'>
+                                                  <li><NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>Home</NavLink></li>
+                                                  <li><NavLink to={'/donors'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>Donors</NavLink></li>
+                                                  <li><NavLink to={'/about'} className={({ isActive }) => isActive ? 'bg-red-400 text-white py-2' : 'bg-gray-300 text-black py-2 hover:bg-gray-200 border border-neutral-400'}>About</NavLink></li>
+                                             </ul>
+                                        </div>
+                                        {/*  */}
+                                        <div className='mb-2'>
+                                             {
+                                                  user ? <button onClick={handleLogout} className='btn btn-primary w-full'>Logout</button> : <Link to={'/login'} className='btn btn-primary w-full'>Login</Link>
+                                             }
                                         </div>
                                    </div>
                               </div>
