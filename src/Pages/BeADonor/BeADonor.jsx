@@ -11,7 +11,6 @@ const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 
 const BeADonor = () => {
   const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
@@ -24,15 +23,36 @@ const BeADonor = () => {
     }
     let imageUrl = "";
 
-    setLoading(true);
+    // upload image to imgbb
+    if (data.profileImage[0]) {
+      setUploading(true);
+      const formData = new FormData();
+      formData.append("image", data.profileImage[0]);
+
+      const res = await fetch(image_upload_url, {
+        method: "POST",
+        body: formData,
+      });
+
+      const imgData = await res.json();
+      imageUrl = imgData?.data?.display_url;
+      setUploading(false);
+    }
     // Add userId from Firebase
     const donorData = {
-      ...data,
-      // userId: user.uid,
+      name: data.name,
+      gender: data.gender,
+      bloodGroup: data.bloodGroup,
+      phone: data.phone,
+      area: data.area,
+      lastDonateDate: data.lastDonateDate || null,
+      address: data.address,
+      profileImage: imageUrl, 
       email: user.email,
+      status: "available",
+      createdAt: new Date().toISOString(),
     };
     console.log(donorData);
-
   };
 
   return (
@@ -105,44 +125,44 @@ const BeADonor = () => {
               />
               {errors.phone && <p className="text-red-500 text-sm mt-1">Valid phone number required</p>}
             </div>
-           {/* 2 column */}
-                <div className="flex flex-col md:flex-row gap-4">
-                   {/* Area */}
-            <div className="flex-1 flex-col gap-2">
-              <label className="font-medium text-sm text-gray-700">Select Your Area</label>
-              <select
-                className="select select-lg border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                {...register("area", { required: true })}
-              >
-                <option value="">Select Area </option>
-                <option>Anwara</option>
-                <option>Banshkhali</option>
-                <option>Boalkhali</option>
-                <option>Chandanaish</option>
-                <option>Fatikchhari</option>
-                <option>Hathazari</option>
-                <option>Lohagara</option>
-                <option>Mirsharai</option>
-                <option>Patiya</option>
-                <option>Rangunia</option>
-                <option>Raozan</option>
-                <option>Sandwip</option>
-                <option>Satkania</option>
-                <option>Sitakunda</option>
-                <option>Karnaphuli</option>
-              </select>
-              {errors.area && <p className="text-red-500 text-sm mt-1">Area is required</p>}
+            {/* 2 column */}
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Area */}
+              <div className="flex-1 flex-col gap-2">
+                <label className="font-medium text-sm text-gray-700">Select Your Area</label>
+                <select
+                  className="select select-lg border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                  {...register("area", { required: true })}
+                >
+                  <option value="">Select Area </option>
+                  <option>Anwara</option>
+                  <option>Banshkhali</option>
+                  <option>Boalkhali</option>
+                  <option>Chandanaish</option>
+                  <option>Fatikchhari</option>
+                  <option>Hathazari</option>
+                  <option>Lohagara</option>
+                  <option>Mirsharai</option>
+                  <option>Patiya</option>
+                  <option>Rangunia</option>
+                  <option>Raozan</option>
+                  <option>Sandwip</option>
+                  <option>Satkania</option>
+                  <option>Sitakunda</option>
+                  <option>Karnaphuli</option>
+                </select>
+                {errors.area && <p className="text-red-500 text-sm mt-1">Area is required</p>}
+              </div>
+              {/* Last Donate Date */}
+              <div className="flex-1 flex-col gap-2">
+                <label className="font-medium text-sm text-gray-700">Last Donate Date</label>
+                <input
+                  type="date"
+                  className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                  {...register("lastDonateDate")}
+                />
+              </div>
             </div>
-            {/* Last Donate Date */}
-            <div className="flex-1 flex-col gap-2">
-              <label className="font-medium text-sm text-gray-700">Last Donate Date</label>
-              <input
-                type="date"
-                className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                {...register("lastDonateDate")}
-              />
-            </div>
-                </div>
 
             {/* Profile Image */}
             <div className="flex flex-col gap-2">
@@ -168,9 +188,10 @@ const BeADonor = () => {
             {/* Submit */}
             <button
               type="submit"
-              className={`bg-red-400 text-white w-full py-2.5 font-semibold rounded-sm mt-4 ${loading ? "loading" : ""}`}
+              className={`bg-red-400 text-white w-full py-2.5 font-semibold rounded-sm mt-4 `}
+              disabled={uploading}
             >
-              {loading ? "Submitting..." : "Register as Donor"}
+              {uploading ? "Uploading..." : "Register as Donor"}
             </button>
           </form>
         </div>
