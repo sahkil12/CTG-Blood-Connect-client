@@ -67,6 +67,7 @@ const BeADonor = () => {
     catch (error) {
       if (error.response?.status === 409) {
         toast.error(error.response.data.message);
+        reset()
       } else {
         toast.error("Something went wrong. Please try again.");
       }

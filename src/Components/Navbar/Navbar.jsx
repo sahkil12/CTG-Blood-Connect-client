@@ -2,9 +2,24 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.png'
 import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
+     const [scrolled, setScrolled] = useState(false);
+
+     useEffect(() => {
+          const handleScroll = () => {
+               if (window.scrollY > 0) {
+                    setScrolled(true);
+               } else {
+                    setScrolled(false);
+               }
+          };
+
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener("scroll", handleScroll);
+     }, []);
      const handleLogout = () => {
           logOutUser().catch(err => console.log(err));
      };
@@ -19,8 +34,9 @@ const Navbar = () => {
                ? "text-red-400 border-b-2 pb-1 font-semibold transition-all duration-150"
                : "text-gray-800 hover:text-red-400 transition-all duration-150";
      return (
-          <div className="w-full bg-base-200 rounded-b-3xl border border-neutral-300 shadow-md py-2 px-5 mx-auto lg:w-[90%]">
-               <div className="navbar">
+          <div className={`w-full bg-base-200 py-2 px-5 transition-all border-base-100 duration-100
+                          ${scrolled ? "border-b border-gray-200 shadow-sm" : ""}`}>
+               <div className="navbar mx-auto lg:w-[90%]">
                     <div className="flex-none ">
                          <div className="drawer">
                               <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
