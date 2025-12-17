@@ -5,54 +5,73 @@ import Lottie from "lottie-react";
 import donorAnimation from "../../assets/lottie/Find-Blood-Donor.json";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeADonor = () => {
   const { user } = useAuth();
+  const axiosPublic = useAxios()
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    if (!user) {
-      toast.error("Please login first");
-      navigate('/login')
-      return;
+
+    try {
+      if (!user) {
+        toast.error("Please login first");
+        navigate('/login')
+        return;
+      }
+      let imageUrl = "";
+
+      // upload image to imgbb
+      if (data.profileImage[0]) {
+        setUploading(true);
+        const formData = new FormData();
+        formData.append("image", data.profileImage[0]);
+        // image post in imgbb
+        const res = await fetch(image_upload_url, {
+          method: "POST",
+          body: formData,
+        });
+
+        const imgData = await res.json();
+        imageUrl = imgData?.data?.display_url;
+        setUploading(false);
+      }
+      // Add userId from Firebase
+      const donorData = {
+        name: data.name,
+        gender: data.gender,
+        bloodGroup: data.bloodGroup,
+        phone: data.phone,
+        area: data.area,
+        lastDonateDate: data.lastDonateDate || null,
+        address: data.address,
+        profileImage: imageUrl,
+        email: user.email,
+        status: "available",
+        createdAt: new Date().toISOString(),
+      };
+
+      const res = await axiosPublic.post('/donors', donorData)
+      if (res.data.insertedId) {
+        toast.success("Donor registered successfully");
+        reset();
+        navigate("/");
+      }
     }
-    let imageUrl = "";
-
-    // upload image to imgbb
-    if (data.profileImage[0]) {
-      setUploading(true);
-      const formData = new FormData();
-      formData.append("image", data.profileImage[0]);
-
-      const res = await fetch(image_upload_url, {
-        method: "POST",
-        body: formData,
-      });
-
-      const imgData = await res.json();
-      imageUrl = imgData?.data?.display_url;
-      setUploading(false);
+    catch (error) {
+      if (error.response?.status === 409) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     }
-    // Add userId from Firebase
-    const donorData = {
-      name: data.name,
-      gender: data.gender,
-      bloodGroup: data.bloodGroup,
-      phone: data.phone,
-      area: data.area,
-      lastDonateDate: data.lastDonateDate || null,
-      address: data.address,
-      profileImage: imageUrl, 
-      email: user.email,
-      status: "available",
-      createdAt: new Date().toISOString(),
-    };
-    console.log(donorData);
+
   };
 
   return (
