@@ -13,7 +13,7 @@ import AuthLayout from './Layouts/AuthLayout.jsx';
 import Register from './Pages/Regester/Register.jsx';
 import About from './Pages/About/About.jsx';
 import Donors from './Pages/Donors/Donors.jsx';
-import BeADonor from '../src/Pages/BeADonar/BeADonar.jsx';
+import BeADonor from '../src/Pages/BeADonor/BeADonor.jsx';
 import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
