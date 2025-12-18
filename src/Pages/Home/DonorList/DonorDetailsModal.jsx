@@ -18,7 +18,6 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
   return (
     <dialog id="donor_modal" className="modal modal-bottom sm:modal-middle" open>
       <div className="modal-box">
-
         {/* Close */}
         <button
           onClick={onClose }

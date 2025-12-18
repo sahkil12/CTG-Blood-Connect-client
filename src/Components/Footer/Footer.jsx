@@ -9,9 +9,9 @@ const Footer = () => {
                <aside className='w-full px-4 lg:px-28 mx-auto lg:w-[90%]'>
                     <div className='flex items-center justify-center'>
                          <img className='w-16' src={logo} alt="logo" />
-                         <h2 className='text-xl lg:text-2xl font-semibold'>CTG Blood Connect</h2>
+                         <h2 className='text-base sm:text-xl lg:text-2xl font-semibold'>CTG Blood Connect</h2>
                     </div>
-                    <p className="font-semibold">
+                    <p className="text-xs sm:text-base text-gray-300 font-semibold">
                          ACME Industries Ltd.
                          Providing reliable tech since 1992
                     </p>

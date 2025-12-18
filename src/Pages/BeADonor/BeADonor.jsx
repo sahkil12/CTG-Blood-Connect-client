@@ -77,9 +77,9 @@ const BeADonor = () => {
 
   return (
     <section className="bg-base-100 py-10">
-      <div className=" mx-auto px-4 grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
+      <div className="mx-auto px-2.5 sm:px-4 grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
         {/* Left: Form */}
-        <div className="bg-white p-4">
+        <div className="bg-white p-2.5 sm:p-4">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Become a Donor</h2>
           <p className="text-gray-600 mb-6">
             Fill in your details to help people in your city

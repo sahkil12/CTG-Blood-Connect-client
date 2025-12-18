@@ -12,25 +12,25 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
   } = donor;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 p-5 flex flex-col justify-between">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 sm:p-5 flex flex-col justify-between">
       
       {/* Top */}
       <div className="flex items-center gap-4">
         <img
           src={profileImage}
           alt={name}
-          className="w-16 h-16 rounded-full object-cover"
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
         />
 
         <div className="flex-1">
-          <h3 className="text-lg font-semibold">{name}</h3>
+          <h3 className="text-base sm:text-lg font-semibold">{name}</h3>
           <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
             <FaMapMarkerAlt />
             {area}
           </p>
         </div>
 
-        <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-red-50 flex items-center justify-center">
           <span className="text-xl font-bold text-red-600">
             {bloodGroup}
           </span>
@@ -42,7 +42,6 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
         <FaPhoneAlt />
         {phone}
       </div>
-
       {/* Status */}
       <div className="mt-4">
         <span
@@ -57,10 +56,10 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
       </div>
 
       {/* Actions */}
-      <div className="mt-5 flex gap-3">
+      <div className="mt-5 flex gap-1.5 sm:gap-3">
         <a
           href={`tel:${phone}`}
-          className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2"
+          className="flex-1 sm:flex-2 text-sm sm:text-base bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"
         >
           <FaPhoneAlt />
           Call
@@ -68,7 +67,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
 
         <button
           onClick={() => setSelectedDonor(donor)}
-          className="flex-1 border border-gray-300 hover:bg-gray-100 font-semibold py-3 rounded-xl flex items-center justify-center gap-2"
+          className="flex-1 text-xs sm:text-base border border-gray-300 hover:bg-gray-100 font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"
         >
           <FaInfoCircle />
           Details
