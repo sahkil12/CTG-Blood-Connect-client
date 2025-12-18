@@ -35,7 +35,7 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
           <h3 className="font-bold text-xl">{name}</h3>
           <p className="text-sm text-base-content/70">{gender}</p>
 
-          <span className="badge badge-error badge-lg mt-2.5">
+          <span className="font-semibold px-5 py-1 bg-red-100 text-red-600 rounded-md mt-2.5">
             {bloodGroup}
           </span>
         </div>
@@ -58,14 +58,12 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
             Status: <span className="capitalize">{status}</span>
           </p>
         </div>
-
         {/* Action */}
         <div className="modal-action">
-          <a href={`tel:${phone}`} className="btn btn-success w-full">
+          <a href={`tel:${phone}`} className="btn btn-success font-bold w-full">
             Call Donor
           </a>
         </div>
-
       </div>
     </dialog>
   );
