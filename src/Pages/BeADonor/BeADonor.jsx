@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import { bloodGroups, genders, areas } from "../../Utility/blood-info";
+// imgbb setup
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 

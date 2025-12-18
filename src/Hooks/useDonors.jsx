@@ -17,7 +17,7 @@ const useDonors = (filters = {}) => {
                });
                return res.data;
           },
-          enabled: !!(bloodGroup || area),
+          // enabled: !!(bloodGroup || area),
      });
 };
 
