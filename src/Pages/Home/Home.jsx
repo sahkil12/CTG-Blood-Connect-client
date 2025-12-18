@@ -9,12 +9,10 @@ const Home = () => {
           bloodGroup: "",
           area: "",
      });
-     // console.log(filters);
      const { data: donors = [], isLoading } = useDonors({
           ...filters,
           limit: 9,
      });
-     // console.log(donors);
      const handleSearch = (searchData) => {
           setFilters(searchData);
      };
