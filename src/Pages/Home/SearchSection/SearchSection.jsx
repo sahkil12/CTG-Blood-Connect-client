@@ -1,8 +1,19 @@
-const SearchSection = () => {
+import { bloodGroups, areas } from "../../../Utility/blood-info";
+
+const SearchSection = ({ onSearch }) => {
+
+     const handleSubmit = (e) => {
+          e.preventDefault();
+          const form = e.target;
+          onSearch({
+               bloodGroup: form.bloodGroup.value,
+               area: form.area.value,
+          });
+     };
+
      return (
           <section className="bg-base-100">
-               <div className="mx-auto max-w-7xl px-4 py-16">
-
+               <div className="mx-auto max-w-7xl px-4 pt-14 pb-8">
                     <div className="text-center mb-10">
                          <h2 className="text-2xl md:text-5xl font-bold text-gray-900">
                               Find Blood Donors in Chittagong
@@ -11,49 +22,47 @@ const SearchSection = () => {
                               Search donors by blood group and area
                          </p>
                     </div>
-                    <div className="bg-white rounded-xl p-6 md:p-8 shadow-md">
+                    {/*  */}
+                    <form
+                         onSubmit={handleSubmit}
+                         className="bg-white rounded-xl p-6 md:p-8 shadow-md"
+                    >
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                              {/* Blood Group */}
-                              <select defaultValue={'Select Your Blood Group'} className="select select-bordered w-full text-lg">
-                                   <option disabled={true} >
-                                        Select Your Blood Group
+                              <select
+                                   name="bloodGroup"
+                                   className="select border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                                   defaultValue=""
+                              >
+                                   <option value="" disabled>
+                                        Select Blood Group
                                    </option>
-                                   <option>A+</option>
-                                   <option>A-</option>
-                                   <option>B+</option>
-                                   <option>B-</option>
-                                   <option>AB+</option>
-                                   <option>AB-</option>
-                                   <option>O+</option>
-                                   <option>O-</option>
+                                   {bloodGroups.map((b) => (
+                                        <option key={b} value={b}>
+                                             {b}
+                                        </option>
+                                   ))}
                               </select>
-                              {/* Area */}
-                              <select defaultValue={'Select Your Area'} className="select select-bordered w-full text-lg">
-                                   <option disabled={true}>
-                                        Select Your Area
+                              {/*  */}
+                              <select
+                                   name="area"
+                                   className="select border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                                   defaultValue=""
+                              >
+                                   <option value="" disabled>
+                                        Select Area
                                    </option>
-                                   <option>Anwara</option>
-                                   <option>Banshkhali</option>
-                                   <option>Boalkhali</option>
-                                   <option>Chandanaish</option>
-                                   <option>Fatikchhari</option>
-                                   <option>Hathazari</option>
-                                   <option>Lohagara</option>
-                                   <option>Mirsharai</option>
-                                   <option>Patiya</option>
-                                   <option>Rangunia</option>
-                                   <option>Raozan</option>
-                                   <option>Sandwip</option>
-                                   <option>Satkania</option>
-                                   <option>Sitakunda</option>
-                                   <option>Karnaphuli</option>
+                                   {areas.map((area) => (
+                                        <option key={area} value={area}>
+                                             {area}
+                                        </option>
+                                   ))}
                               </select>
-                              {/* Search Button */}
+                              {/*  */}
                               <button className="btn bg-red-400 text-base text-white w-full">
                                    Search Donors
                               </button>
                          </div>
-                    </div>
+                    </form>
                </div>
           </section>
      );

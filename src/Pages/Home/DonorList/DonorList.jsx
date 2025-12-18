@@ -27,7 +27,7 @@ const donors = [
 const DonorList = () => {
      return (
           <section className="bg-base-100">
-               <div className="mx-auto  px-4 py-10">
+               <div className="mx-auto px-4 py-10">
                     <h2 className="text-2xl md:text-4xl font-bold text-gray-900 text-center mb-12">
                          Available Donors
                     </h2>
