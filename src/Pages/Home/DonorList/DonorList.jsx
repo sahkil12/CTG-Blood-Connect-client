@@ -20,10 +20,10 @@ const DonorList = ({ donors, loading }) => {
                               ))}
 
                          {!loading &&
-                              donors.map((donor) => (
+                              donors?.map((donor) => (
                                    <DonorCard key={donor._id} donor={donor} setSelectedDonor={setSelectedDonor} />
                               ))}
-                         {!loading && donors.length === 0 && (
+                         {!loading && donors?.length === 0 && (
                               <p className="text-center text-xl py-10 lg:py-16 text-gray-500 col-span-full">
                                    No donors found for this search.
                               </p>

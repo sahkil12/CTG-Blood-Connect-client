@@ -21,7 +21,7 @@ const Home = () => {
           <div>
                <Hero></Hero>
                <SearchSection onSearch={handleSearch}></SearchSection>
-               <DonorList donors={donors} loading={isLoading}></DonorList>
+               <DonorList donors={donors.donors} loading={isLoading}></DonorList>
           </div>
      );
 };
