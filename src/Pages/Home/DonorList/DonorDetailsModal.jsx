@@ -2,7 +2,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const DonorDetailsModal = ({ donor, onClose  }) => {
   if (!donor) return null;
-
+  
   const {
     name,
     gender,
@@ -25,7 +25,6 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
         >
           ✕
         </button>
-
         {/* Profile */}
         <div className="flex flex-col items-center text-center">
           <img
@@ -60,7 +59,8 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
         </div>
         {/* Action */}
         <div className="modal-action">
-          <a href={`tel:${phone}`} className="btn btn-success font-bold w-full">
+          <a href={`tel:${phone}`} className="w-full text-sm sm:text-base bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2">
+            <FaPhoneAlt />
             Call Donor
           </a>
         </div>

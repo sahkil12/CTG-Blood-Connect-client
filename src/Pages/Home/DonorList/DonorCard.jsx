@@ -12,8 +12,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
   } = donor;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 p-4 sm:p-5 flex flex-col justify-between">
-      
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg focus:shadow-lg transition-shadow duration-300 p-4 sm:p-5 flex flex-col justify-between">
       {/* Top */}
       <div className="flex items-center gap-4">
         <img
@@ -36,7 +35,6 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           </span>
         </div>
       </div>
-
       {/* Phone */}
       <div className="mt-3 text-sm flex items-center gap-2 text-gray-600">
         <FaPhoneAlt />
@@ -54,7 +52,6 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           {status}
         </span>
       </div>
-
       {/* Actions */}
       <div className="mt-5 flex gap-1.5 sm:gap-3">
         <a
@@ -64,7 +61,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           <FaPhoneAlt />
           Call
         </a>
-
+          {/* details button */}
         <button
           onClick={() => setSelectedDonor(donor)}
           className="flex-1 text-xs sm:text-base border border-gray-300 hover:bg-gray-100 font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"

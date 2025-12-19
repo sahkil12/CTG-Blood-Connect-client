@@ -32,7 +32,7 @@ const DonorList = ({ donors, loading }) => {
                     <div className="text-center mt-10 lg:mt-16">
                          <Link
                               to="/donors"
-                              className="btn bg-red-400 text-white px-8"
+                              className="btn bg-red-400 rounded-lg text-white px-10 py-6 font-semibold hover:bg-red-500 hover:opacity-85 hover:shadow-lg transition"
                          >
                               More Donors
                          </Link>
