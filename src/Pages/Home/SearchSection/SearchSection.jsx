@@ -2,16 +2,18 @@ import { useState } from "react";
 import { bloodGroups, areas } from "../../../Utility/blood-info";
 
 const SearchSection = ({ onSearch }) => {
-     const [value, setValue] = useState("")
+     const [bloodGroup, setBloodGroup] = useState("");
+     const [area, setArea] = useState("");
+
      const handleSubmit = (e) => {
           e.preventDefault();
-          const form = e.target;
-          onSearch({
-               bloodGroup: form.bloodGroup.value,
-               area: form.area.value,
-          });
+          onSearch({ bloodGroup, area });
      };
-
+     const handleReset = () => {
+          setBloodGroup("");
+          setArea("");
+          onSearch({});
+     };
      return (
           <section className="bg-base-100">
                <div className="mx-auto max-w-7xl px-4 pt-14 xl:pt-2 pb-5">
@@ -30,9 +32,9 @@ const SearchSection = ({ onSearch }) => {
                     >
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                               <select
-                                   name="bloodGroup"
                                    className="select border-2 px-4 rounded-md text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                                   defaultValue=""
+                                   value={bloodGroup}
+                                   onChange={(e) => setBloodGroup(e.target.value)}
                               >
                                    <option value="" disabled>
                                         Select Blood Group
@@ -45,9 +47,9 @@ const SearchSection = ({ onSearch }) => {
                               </select>
                               {/* area select */}
                               <select
-                                   name="area"
                                    className="select rounded-md border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                                   defaultValue=""
+                                   value={area}
+                                   onChange={(e) => setArea(e.target.value)}
                               >
                                    <option value="" disabled>
                                         Select Area
@@ -63,7 +65,10 @@ const SearchSection = ({ onSearch }) => {
                                    <button type="submit" className="btn flex-3 rounded-md bg-red-400 text-base text-white w-full">
                                         Search Donors
                                    </button>
-                                   <button type="reset" onClick={()=> setValue("")} className="btn w-full flex-1 rounded-md bg-white text-black border-2 border-red-400 hover:bg-red-400 hover:text-white">
+                                   <button
+                                        type="button"
+                                        onClick={handleReset}
+                                        className="btn w-full flex-1 rounded-md bg-white text-black border-2 border-red-400 hover:bg-red-400 hover:text-white">
                                         Reset
                                    </button>
                               </div>
