@@ -16,7 +16,6 @@ const Donors = () => {
      })
      const donors = data?.donors || [];
      const totalPages = data?.totalPages || 1;
-     console.log(donors, totalPages);
 
      const handleSearch = (query) => {
           setFilters(query);
@@ -24,7 +23,7 @@ const Donors = () => {
      };
 
      return (
-          <section className="bg-base-100 min-h-screen">
+          <section className="bg-base-100 min-h-screen my-10 lg:my-14">
                {/* Search */}
                <SearchSection onSearch={handleSearch} />
                {/* Cards */}
@@ -53,7 +52,7 @@ const Donors = () => {
                     </div>
                     {/* Pagination */}
                     {totalPages > 1 && (
-                         <div className="flex justify-center mt-12 lg:mt-16">
+                         <div className="flex justify-center mt-12 lg:mt-20">
                               <div className="flex gap-1">
                                    <button
                                         className="btn px-7 mr-3"

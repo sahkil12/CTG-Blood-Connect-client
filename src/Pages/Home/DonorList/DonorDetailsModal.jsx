@@ -1,8 +1,12 @@
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
 
-const DonorDetailsModal = ({ donor, onClose  }) => {
+dayjs.extend(relativeTime)
+
+const DonorDetailsModal = ({ donor, onClose }) => {
   if (!donor) return null;
-  
+
   const {
     name,
     gender,
@@ -49,9 +53,11 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
           <p className="flex items-center gap-2">
             <FaMapMarkerAlt /> {address}
           </p>
-          <p className="text-base-content/60">
+          <p className="text-base-content/70">
             Last Donate:{" "}
-            {lastDonateDate ? lastDonateDate : "Not donated yet"}
+            {lastDonateDate
+              ? dayjs(lastDonateDate).fromNow(true) + " ago"
+              : "Not donated yet"}
           </p>
           <p className="font-medium">
             Status: <span className="capitalize">{status}</span>
