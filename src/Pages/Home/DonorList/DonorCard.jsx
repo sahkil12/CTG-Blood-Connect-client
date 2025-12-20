@@ -20,7 +20,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           alt={name}
           className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
         />
-
+        {/* name and area */}
         <div className="flex-1">
           <h3 className="text-base sm:text-lg font-semibold">{name}</h3>
           <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
@@ -28,9 +28,9 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
             {area}
           </p>
         </div>
-
+        {/* blood group */}
         <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-red-50 flex items-center justify-center">
-          <span className="text-xl font-bold text-red-600">
+          <span className="text-xl font-extrabold text-red-600">
             {bloodGroup}
           </span>
         </div>
@@ -43,11 +43,10 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
       {/* Status */}
       <div className="mt-4">
         <span
-          className={`px-3 py-1 text-xs font-semibold rounded-full ${
-            available
+          className={`px-3 py-1 text-xs font-semibold rounded-full ${available
               ? "bg-green-100 text-green-700"
               : "bg-gray-200 text-gray-600"
-          }`}
+            }`}
         >
           {status}
         </span>
@@ -61,7 +60,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           <FaPhoneAlt />
           Call
         </a>
-          {/* details button */}
+        {/* details button */}
         <button
           onClick={() => setSelectedDonor(donor)}
           className="flex-1 text-xs sm:text-base border border-gray-300 hover:bg-gray-100 font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"

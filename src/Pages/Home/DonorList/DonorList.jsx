@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const DonorList = ({ donors, loading }) => {
      const [selectedDonor, setSelectedDonor] = useState(null);
-
+     console.log(donors);
      return (
           <section className="bg-base-100">
                <div className="mx-auto px-4 py-10">

@@ -46,7 +46,7 @@ const Login = () => {
           return <Navigate to={'/'}></Navigate>
      }
      return (
-          <div className="min-h-[calc(100vh-90px)] bg-base-100 flex items-center justify-center px-3 py-12">
+          <div className="min-h-[calc(100vh-97px)] bg-base-100 flex items-center justify-center px-3 py-12">
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
                     {/* left form */}
                     <div className="p-2 md:px-10 md:py-16 max-w-xl w-full mx-auto">
@@ -82,7 +82,7 @@ const Login = () => {
                                    {/* show / hide icons */}
                                    <span
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-4 top-[52px] cursor-pointer text-gray-500"
+                                        className="absolute right-4 top-12 lg:top-[52px] cursor-pointer text-gray-500"
                                    >
                                         {showPassword ? (
                                              <AiOutlineEyeInvisible size={22} />

@@ -20,7 +20,7 @@ const DonorDetailsModal = ({ donor, onClose  }) => {
       <div className="modal-box">
         {/* Close */}
         <button
-          onClick={onClose }
+          onClick={onClose}
           className="btn btn-md btn-circle btn-ghost absolute right-2 top-2"
         >
           ✕

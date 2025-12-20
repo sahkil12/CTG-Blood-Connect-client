@@ -28,13 +28,14 @@ const Donors = () => {
                {/* Search */}
                <SearchSection onSearch={handleSearch} />
                {/* Cards */}
-               <div className=" mx-auto px-4 py-10">
+               <div className="mx-auto px-4 py-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                         {/* loading skeleton show */}
                          {isLoading &&
                               Array.from({ length: 12 }).map((_, i) => (
                                    <DonorSkeleton key={i} />
                               ))}
-
+                         {/* Donors card */}
                          {!isLoading &&
                               donors?.map((donor) => (
                                    <DonorCard
@@ -45,7 +46,7 @@ const Donors = () => {
                               ))}
 
                          {!isLoading && donors?.length === 0 && (
-                              <p className="text-center col-span-full text-lg text-gray-500">
+                              <p className="text-center col-span-full text-lg md:text-2xl text-gray-500">
                                    No donors found.
                               </p>
                          )}
