@@ -5,9 +5,10 @@ import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import userPic from '../../assets/images/user.jpg'
+// import userPic from '../../assets/images/user-pic.png'
 import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
+import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
      const { createUser, googleCreate, updateUserProfile, user } = useAuth()
@@ -15,13 +16,21 @@ const Register = () => {
      const [nameError, setNameError] = useState("");
      const [showPassword, setShowPassword] = useState(false);
      const navigate = useNavigate()
+     const axiosPublic = useAxios();
 
-     const handleRegister = (e) => {
+     const saveUserToDB = async (user) => {
+          try {
+               await axiosPublic.post('/users', user);
+          } catch (err) {
+               setError(err.message)
+          }
+     };
+     const handleRegister = async (e) => {
           e.preventDefault();
           const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
-          const photo = userPic
+          const photo = 'https://i.ibb.co.com/cXsp46W4/user-pic.png'
           if (name.length < 5) {
                setNameError("Name must be at least 5 characters")
                return
@@ -29,33 +38,37 @@ const Register = () => {
           else {
                setNameError("")
           }
-          console.log(name, email, password);
-          createUser(email, password)
-               .then(() => {
-                    updateUserProfile({
-                         displayName: name,
-                         photoURL: photo,
-                    })
-                         .then(() => {
-                              toast.success("Your Account is Successfully Created")
-                              navigate("/be-a-donor");
-                         });
-               })
-               .catch((error) => {
-                    // console.log(error);
-                    setError(error.message)
+          try {
+               const res = await createUser(email, password);
+               // user profile update
+               await updateUserProfile({
+                    displayName: name,
+                    photoURL: photo,
                });
+               // Backend save
+               saveUserToDB({ name, email, photo })
+
+               toast.success("Your Account is Successfully Created");
+               navigate("/be-a-donor");
+          } catch (error) {
+               setError(error.message);
+          }
      };
-     const handleGoogleLogin = () => {
-          googleCreate()
-               .then(() => {
-                    navigate('/be-a-donor')
-                    toast.success("Your Account is Successfully Created")
-               })
-               .catch((error) => {
-                    // console.log(error);
-                    setError(error.message)
-               });
+     const handleGoogleLogin = async () => {
+
+          try {
+               const res = await googleCreate();
+               const userInfo = res.user;
+               // Save to backend
+               const name = userInfo?.displayName
+               const email = userInfo?.email
+               const photo = userInfo?.photoURL
+               saveUserToDB({ name, email, photo })
+               toast.success("Your Account is Successfully Created");
+               navigate("/be-a-donor");
+          } catch (error) {
+               setError(error.message);
+          }
      }
      if (user) {
           <Loader></Loader>
