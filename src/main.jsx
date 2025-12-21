@@ -16,6 +16,7 @@ import Donors from './Pages/Donors/Donors.jsx';
 import BeADonor from '../src/Pages/BeADonor/BeADonor.jsx';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Profile from './Pages/Profile/Profile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:'be-a-donor',
         element: <BeADonor></BeADonor>
+      },
+      {
+        path: 'profile',
+        element: <Profile></Profile>
       }
     ]
   },
