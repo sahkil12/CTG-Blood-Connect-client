@@ -38,7 +38,7 @@ const Register = () => {
                setNameError("")
           }
           try {
-               const res = await createUser(email, password);
+               await createUser(email, password);
                // user profile update
                await updateUserProfile({
                     displayName: name,

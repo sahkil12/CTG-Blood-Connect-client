@@ -55,7 +55,7 @@ const Donors = () => {
                          <div className="flex justify-center mt-12 lg:mt-20">
                               <div className="flex gap-1">
                                    <button
-                                        className="btn px-7 mr-3"
+                                        className="btn border border-gray-300 px-7 mr-3"
                                         disabled={page === 1}
                                         onClick={() => setPage((p) => p - 1)}
                                    >
@@ -65,7 +65,7 @@ const Donors = () => {
                                    {Array.from({ length: totalPages }).map((_, i) => (
                                         <button
                                              key={i}
-                                             className={`btn ${page === i + 1 ? "btn-active" : ""
+                                             className={`btn border border-gray-200 ${page === i + 1 ? "btn-active" : ""
                                                   }`}
                                              onClick={() => setPage(i + 1)}
                                         >
@@ -74,7 +74,7 @@ const Donors = () => {
                                    ))}
 
                                    <button
-                                        className="btn px-7 ml-3"
+                                        className="btn border border-gray-300 px-7 ml-3"
                                         disabled={page === totalPages}
                                         onClick={() => setPage((p) => p + 1)}
                                    >

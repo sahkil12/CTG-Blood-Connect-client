@@ -1,12 +1,12 @@
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { getDonationStatus } from "../../../Utility/donate-date";
 
 dayjs.extend(relativeTime)
 
 const DonorDetailsModal = ({ donor, onClose }) => {
   if (!donor) return null;
-
   const {
     name,
     gender,
@@ -19,6 +19,7 @@ const DonorDetailsModal = ({ donor, onClose }) => {
     lastDonateDate,
   } = donor;
 
+  const donationStatus = getDonationStatus(lastDonateDate);
   return (
     <dialog id="donor_modal" className="modal modal-bottom sm:modal-middle" open>
       <div className="modal-box">
@@ -53,12 +54,23 @@ const DonorDetailsModal = ({ donor, onClose }) => {
           <p className="flex items-center gap-2">
             <FaMapMarkerAlt /> {address}
           </p>
-          <p className="text-base-content/70">
+          <div className="flex flex-wrap gap-2.5 mt-2 items-center">
+            {/* Last donate badge */}
             Last Donate:{" "}
-            {lastDonateDate
-              ? dayjs(lastDonateDate).fromNow(true) + " ago"
-              : "Not donated yet"}
-          </p>
+            <span className="badge badge-outline text-sm font-medium">
+               {donationStatus?.lastDonateText}
+            </span>
+            {/* Eligibility badge */}
+            <span
+              className={`badge text-[13px] text-black/90 ${donationStatus?.eligible
+                ? "badge-success"
+                : "badge-error"
+                }`}
+            >
+              {donationStatus?.eligibilityText}
+            </span>
+          </div>
+
           <p className="font-medium">
             Status: <span className="capitalize">{status}</span>
           </p>

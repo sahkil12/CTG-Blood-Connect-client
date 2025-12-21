@@ -19,6 +19,9 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
           src={profileImage}
           alt={name}
           className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
+          onError={(e)=>{
+            e.target.src = "https://i.ibb.co.com/dsy7Dz59/donors.jpg"
+          }}
         />
         {/* name and area */}
         <div className="flex-1">

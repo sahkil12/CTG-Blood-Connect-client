@@ -40,7 +40,8 @@ const BeADonor = () => {
         });
         // 
         const imgData = await res.json();
-        imageUrl = imgData?.data?.display_url;
+        console.log(imgData);
+        imageUrl = imgData?.data?.url;
         setUploading(false);
       }
       // Add userId from Firebase
@@ -132,7 +133,6 @@ const BeADonor = () => {
                 {errors.bloodGroup && <p className="text-red-500 text-sm mt-1">Blood Group is required</p>}
               </div>
             </div>
-
             {/* Phone Number */}
             <div className="flex flex-col gap-2">
               <label className="font-medium text-sm text-gray-700">Your valid Phone number</label>
@@ -170,7 +170,6 @@ const BeADonor = () => {
                 />
               </div>
             </div>
-
             {/* Profile Image */}
             <div className="flex flex-col gap-2">
               <label className="font-medium text-sm text-gray-700">Upload Your Image</label>
