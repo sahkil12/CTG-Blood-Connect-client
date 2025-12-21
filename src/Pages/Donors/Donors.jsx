@@ -65,7 +65,7 @@ const Donors = () => {
                                    {Array.from({ length: totalPages }).map((_, i) => (
                                         <button
                                              key={i}
-                                             className={`btn border border-gray-200 ${page === i + 1 ? "btn-active" : ""
+                                             className={`btn border border-gray-200 ${page === i + 1 ? "btn-active border border-gray-300" : ""
                                                   }`}
                                              onClick={() => setPage(i + 1)}
                                         >
