@@ -5,6 +5,7 @@ import useRole from "../../Hooks/useRole";
 import useAxios from "../../Hooks/useAxios";
 import ProfileCard from "./ProfileCard";
 import Loader from "../../Components/Loader/Loader";
+import toast from "react-hot-toast";
 
 const Profile = () => {
      const { user } = useAuth();
@@ -28,6 +29,19 @@ const Profile = () => {
                return res.data;
           },
      });
+     const handleEdit = () => {
+          // navigate("/profile/edit");
+          navigate("/profile");
+     };
+
+     const handleDelete = async () => {
+          // const confirm = window.confirm("Are you sure you want to delete your donor profile?");
+          // if (!confirm) return;
+
+          // await axiosPublic.delete(`/donors/${user.email}`);
+          toast.success("Donor profile deleted");
+          // navigate("/");
+     };
 
      if (roleLoading || isLoading) {
           return <Loader></Loader>
@@ -41,7 +55,10 @@ const Profile = () => {
                <h2 className="text-3xl font-bold mb-8">My Profile</h2>
 
                {donor ? (
-                    <ProfileCard donor={donor} />
+                    <ProfileCard donor={{ ...donor, role }}
+                         onEdit={handleEdit}
+                         onDelete={handleDelete}
+                    />
                ) : (
                     <p className="text-gray-500">No donor information found.</p>
                )}

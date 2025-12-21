@@ -1,35 +1,77 @@
-const ProfileCard = ({ donor }) => {
-     return (
-          <div className="bg-gray-100 border border-neutral-200 rounded-xl shadow-lg p-8 lg:p-10 grid grid-cols-1 md:grid-cols-3 gap-8 ">
-               {/* Left */}
-               <div className="text-center">
-                    <img
-                         src={donor.profileImage}
-                         alt={donor.name}
-                         className="w-40 h-40 lg:w-44 lg:h-44 mx-auto rounded-full object-cover"
-                    />
-                    <h3 className="text-xl font-semibold mt-5">{donor.name}</h3>
-                    <p className="text-sm md:text-lg pt-2 font-bold text-red-500">{donor.bloodGroup}</p>
-                    <span className="inline-block mt-2 px-4 py-1 text-sm rounded-full bg-green-100 text-green-800">
-                         {donor.status}
-                    </span>
-                  
-               </div>
-               {/* Right */}
-               <div className="md:col-span-2 space-y-3">
-                    <p><strong>Email:</strong> {donor.email}</p>
-                    <p><strong>Phone:</strong> {donor.phone}</p>
-                    <p><strong>Gender:</strong> {donor.gender}</p>
-                    <p><strong>Area:</strong> {donor.area}</p>
-                    <p><strong>Address:</strong> {donor.address}</p>
-                    <p>
-                         <strong>Last Donate:</strong>{" "}
-                         {donor.lastDonateDate || "Not yet"}
-                    </p>
-               </div>
+import dayjs from "dayjs";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
+const ProfileCard = ({ donor, onEdit, onDelete }) => {
+  const {
+    name,
+    profileImage,
+    bloodGroup,
+    area,
+    phone,
+    email,
+    lastDonateDate,
+    status,
+    role,
+  } = donor;
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+      {/* top */}
+      <div className="flex flex-col md:flex-row items-center gap-8">
+        <img
+          src={profileImage}
+          alt={name}
+          className="w-32 h-32 rounded-full object-cover border-4 border-red-200"
+        />
+
+        <div className="flex-1">
+          <div className="flex items-center gap-3">
+            <h3 className="text-2xl font-bold">{name}</h3>
+            <span className="px-3 py-1 text-xs rounded-full bg-red-100 text-red-600 capitalize">
+              {role}
+            </span>
           </div>
-     );
+
+          <p className="text-gray-500 mt-1">{email}</p>
+
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <p><strong>Blood Group:</strong> {bloodGroup}</p>
+            <p><strong>Area:</strong> {area}</p>
+            <p><strong>Phone:</strong> {phone}</p>
+            <p>
+              <strong>Status:</strong>{" "}
+              <span className={status === "available" ? "text-green-600" : "text-red-500"}>
+                {status}
+              </span>
+            </p>
+            <p>
+              <strong>Last Donate:</strong>{" "}
+              {lastDonateDate
+                ? dayjs(lastDonateDate).format("DD MMM YYYY")
+                : "Not yet"}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* actions */}
+      <div className="mt-8 flex gap-4">
+        <button
+          onClick={onEdit}
+          className="btn bg-neutral-200 flex items-center gap-2"
+        >
+          <FaEdit /> Edit Profile
+        </button>
+
+        <button
+          onClick={onDelete}
+          className="btn bg-red-400 text-white flex items-center gap-2"
+        >
+          <FaTrash /> Delete
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ProfileCard;
