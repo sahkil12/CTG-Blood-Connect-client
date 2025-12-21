@@ -8,7 +8,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
-
+import userImage from '../../assets/images/user-pic.png';
 const Register = () => {
      const { createUser, googleCreate, updateUserProfile, user } = useAuth()
      const [error, setError] = useState("");
@@ -29,7 +29,7 @@ const Register = () => {
           const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
-          const photo = 'https://i.ibb.co.com/cXsp46W4/user-pic.png'
+          const photo = {userImage}
           if (name.length < 5) {
                setNameError("Name must be at least 5 characters")
                return

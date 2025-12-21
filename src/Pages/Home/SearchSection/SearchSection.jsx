@@ -62,7 +62,7 @@ const SearchSection = ({ onSearch }) => {
                               </select>
                               {/* action button */}
                               <div className="flex gap-3">
-                                   <button type="submit" className="btn flex-3 rounded-md bg-red-400 text-base text-white w-full">
+                                   <button type="submit" className="btn flex-3 rounded-md bg-red-400 text-white w-full">
                                         Search Donors
                                    </button>
                                    <button

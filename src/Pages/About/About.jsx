@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
-
+import donorImage from '../../assets/images/about-donor.jpg'
 const About = () => {
   return (
     <section className="bg-base-100">
@@ -33,7 +33,7 @@ const About = () => {
             </ul>
           </div>
           <img
-            src="https://i.ibb.co/gZ5KGnkM/World-Blood-Donor-Day-2022.jpg"
+            src={donorImage}
             alt="Blood Donation"
             className="rounded-2xl shadow-lg border border-neutral-200"
           />
@@ -56,17 +56,17 @@ const About = () => {
         </div>
         {/* Stats */}
         <div className="grid sm:grid-cols-3 gap-8 text-center">
-          <div className="bg-white p-8 rounded-2xl border border-gray-600 shadow-md">
+          <div className="bg-white p-8 rounded-2xl border-2 border-gray-300 shadow-sm">
             <h3 className="text-4xl font-bold text-red-500">200+</h3>
             <p className="text-gray-600 mt-2">Registered Donors</p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-gray-600 shadow-md">
+          <div className="bg-white p-8 rounded-2xl border-2 border-gray-300 shadow-sm">
             <h3 className="text-4xl font-bold text-red-500">100+</h3>
             <p className="text-gray-600 mt-2">Successful Matches</p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-gray-600 shadow-md">
+          <div className="bg-white p-8 rounded-2xl border-2 border-gray-300 shadow-sm">
             <h3 className="text-4xl font-bold text-red-500">24/7</h3>
             <p className="text-gray-600 mt-2">Platform Availability</p>
           </div>
