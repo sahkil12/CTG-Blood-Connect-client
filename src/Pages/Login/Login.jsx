@@ -7,18 +7,19 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
+import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
      const { loginUser, googleCreate, user } = useAuth()
      const [error, setError] = useState("");
      const navigate = useNavigate()
      const [showPassword, setShowPassword] = useState(false);
+     const axiosPublic = useAxios();
 
      const handleLogin = (e) => {
           e.preventDefault();
           const email = e.target.email.value;
           const password = e.target.password.value;
-          console.log(email, password);
           loginUser(email, password)
                .then(() => {
                     navigate('/')
@@ -30,16 +31,21 @@ const Login = () => {
                     setError(error.message)
                });
      };
-     const handleGoogleRegister = () => {
-          googleCreate()
-               .then(() => {
-                    navigate('/')
-                    toast.success("You are Login Successfully")
-
-               })
-               .catch((error) => {
-                    setError(error.message)
-               });
+     const handleGoogleRegister = async () => {
+          try {
+               const res = await googleCreate();
+               const userInfo = res.user;
+               // Save to backend
+               const name = userInfo?.displayName
+               const email = userInfo?.email
+               const photo = userInfo?.photoURL
+               const user = { name, email, photo }
+               await axiosPublic.post('/users', user);
+               toast.success("You are Login Successfully")
+               navigate("/");
+          } catch (error) {
+               setError(error.message);
+          }
      }
      if (user) {
           <Loader></Loader>

@@ -5,7 +5,6 @@ import loginAnimation from "../../assets/lottie/blood donner.json";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-// import userPic from '../../assets/images/user-pic.png'
 import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
@@ -55,7 +54,6 @@ const Register = () => {
           }
      };
      const handleGoogleLogin = async () => {
-
           try {
                const res = await googleCreate();
                const userInfo = res.user;
