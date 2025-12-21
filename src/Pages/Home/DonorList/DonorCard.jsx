@@ -1,5 +1,5 @@
 import { FaPhoneAlt, FaMapMarkerAlt, FaInfoCircle } from "react-icons/fa";
-
+import donorImg from '../../../assets/images/donors.jpg'
 const DonorCard = ({ donor, setSelectedDonor }) => {
   const {
     name,
@@ -16,12 +16,9 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
       {/* Top */}
       <div className="flex items-center gap-4">
         <img
-          src={profileImage}
+          src={profileImage || donorImg}
           alt={name}
           className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
-          onError={(e)=>{
-            e.target.src = "https://i.ibb.co.com/dsy7Dz59/donors.jpg"
-          }}
         />
         {/* name and area */}
         <div className="flex-1">
@@ -47,8 +44,8 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
       <div className="mt-4">
         <span
           className={`px-3 py-1 text-xs font-semibold rounded-full ${available
-              ? "bg-green-100 text-green-700"
-              : "bg-gray-200 text-gray-600"
+            ? "bg-green-100 text-green-700"
+            : "bg-gray-200 text-gray-600"
             }`}
         >
           {status}
