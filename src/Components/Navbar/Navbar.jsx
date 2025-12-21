@@ -64,14 +64,14 @@ const Navbar = () => {
                                                   <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
                                                   <li><NavLink to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
                                                   <li><NavLink to={'/about'} className={drawerNavLinkStyle}>About</NavLink></li>
-                                                  {role === 'admin' && (
+                                                  {!roleLoading && role === 'admin' && (
                                                        <li><NavLink to={'/dashboard'} className={drawerNavLinkStyle}>Dashboard</NavLink></li>
                                                   )}
                                              </ul>
                                         </div>
                                         {/*  */}
                                         <div className='mb-2'>
-                                             {(role === "donor" || role === "admin") && (
+                                             {!roleLoading && (role === "donor" || role === "admin") && (
                                                   <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
                                                        Profile
                                                   </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
                                    <li><NavLink to={'/'} className={navLinkStyle}>Home</NavLink></li>
                                    <li><NavLink to={'/donors'} className={navLinkStyle}>Donors</NavLink></li>
                                    <li><NavLink to={'/about'} className={navLinkStyle}>About </NavLink></li>
-                                   {role === 'admin' && (
+                                   {!roleLoading && role === 'admin' && (
                                         <li><NavLink to={'/dashboard'} className={navLinkStyle}>Dashboard</NavLink></li>
                                    )}
                               </ul>
@@ -123,7 +123,7 @@ const Navbar = () => {
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
                                              <li className="mt-24">
-                                                  {(role === "donor" || role === "admin") && (
+                                                  {!roleLoading && (role === "donor" || role === "admin") && (
                                                        <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
                                                             Profile
                                                        </Link>
