@@ -1,8 +1,8 @@
 
 const Profile = () => {
      return (
-          <div>
-               
+          <div className="h-screen">
+               <h2 className="text-3xl mt-14 text-center">Profile</h2>
           </div>
      );
 };

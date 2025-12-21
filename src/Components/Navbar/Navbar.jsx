@@ -3,10 +3,13 @@ import logo from '../../assets/images/logo.png'
 import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
 import { useEffect, useState } from 'react';
+import useRole from '../../Hooks/useRole';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const [scrolled, setScrolled] = useState(false);
+     const { role, roleLoading } = useRole()
+     console.log(role, roleLoading);
 
      useEffect(() => {
           const handleScroll = () => {
@@ -61,10 +64,18 @@ const Navbar = () => {
                                                   <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
                                                   <li><NavLink to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
                                                   <li><NavLink to={'/about'} className={drawerNavLinkStyle}>About</NavLink></li>
+                                                  {role === 'admin' && (
+                                                       <li><NavLink to={'/dashboard'} className={drawerNavLinkStyle}>Dashboard</NavLink></li>
+                                                  )}
                                              </ul>
                                         </div>
                                         {/*  */}
                                         <div className='mb-2'>
+                                             {(role === "donor" || role === "admin") && (
+                                                  <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
+                                                       Profile
+                                                  </Link>
+                                             )}
                                              {
                                                   user ? <button onClick={handleLogout} className='btn bg-red-400 text-white w-full'>Logout</button> : <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
                                              }
@@ -84,12 +95,14 @@ const Navbar = () => {
                               </Link>
                          </div>
                          {/*  */}
-                         <div className='hidden lg:flex '>
+                         <div className='hidden lg:flex'>
                               <ul className='flex gap-8'>
                                    <li><NavLink to={'/'} className={navLinkStyle}>Home</NavLink></li>
                                    <li><NavLink to={'/donors'} className={navLinkStyle}>Donors</NavLink></li>
                                    <li><NavLink to={'/about'} className={navLinkStyle}>About </NavLink></li>
-                                   {/* <li><NavLink to={'/dashboard'} className={navLinkStyle}>Dashboard</NavLink></li> */}
+                                   {role === 'admin' && (
+                                        <li><NavLink to={'/dashboard'} className={navLinkStyle}>Dashboard</NavLink></li>
+                                   )}
                               </ul>
                          </div>
                          <div className="flex items-center gap-2 md:gap-4">
@@ -110,9 +123,11 @@ const Navbar = () => {
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
                                              <li className="mt-24">
-                                                  <button className="btn bg-neutral-200 mb-4 btn-md w-full">
-                                                       Profile
-                                                  </button>
+                                                  {(role === "donor" || role === "admin") && (
+                                                       <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
+                                                            Profile
+                                                       </Link>
+                                                  )}
                                                   <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm w-full">
                                                        Logout
                                                   </button>
