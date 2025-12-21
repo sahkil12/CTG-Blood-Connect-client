@@ -49,13 +49,13 @@ const Navbar = () => {
                               {/* drawer */}
                               <div className="drawer-side">
                                    <label htmlFor="my-drawer-1" aria-label="close sidebar" className="drawer-overlay"></label>
-                                   <div className="menu bg-gray-200 min-h-full w-72 md:w-80 px-4 py-6 flex flex-col justify-between">
+                                   <div className="menu bg-gray-100 min-h-full w-72 md:w-80 px-4 py-6 flex flex-col justify-between">
                                         <div>
                                              {/* Sidebar content here */}
-                                             <div className='flex items-center'>
+                                             <Link to={'/'} className='flex items-center'>
                                                   <img className='w-14 md:w-16' src={logo} alt="logo" />
                                                   <h2 className='text-lg md:text-xl font-semibold'>CTG Blood Connect</h2>
-                                             </div>
+                                             </Link>
                                              <div className='border mt-8 border-gray-500'></div>
                                              <ul className=' mt-8 w-full gap-3 items-start text-black space-y-3'>
                                                   <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>

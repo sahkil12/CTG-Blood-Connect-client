@@ -19,7 +19,7 @@ const SearchSection = ({ onSearch }) => {
                <div className="mx-auto max-w-7xl px-4 pt-14 xl:pt-2 pb-5">
                     <div className="text-center mb-10">
                          <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-                              Find Blood Donors in Chittagong
+                              Find <span className="text-red-500">Blood</span> Donors in Chittagong
                          </h2>
                          <p className="mt-4 text-gray-600">
                               Search donors by blood group and area
