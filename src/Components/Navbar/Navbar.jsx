@@ -9,7 +9,7 @@ const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const [scrolled, setScrolled] = useState(false);
      const { role, roleLoading } = useRole()
-     console.log(role, roleLoading);
+     // console.log(role, roleLoading);
 
      useEffect(() => {
           const handleScroll = () => {
@@ -117,14 +117,14 @@ const Navbar = () => {
                                                        src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
                                              </div>
                                         </div>
-                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-100 rounded-box z-1 mt-3 w-64 p-3 shadow h-72">
+                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-1 mt-3 w-56 md:w-64 p-3 shadow h-fit">
                                              <li className="text-center">
                                                   <p className="font-semibold text-lg">{user?.displayName}</p>
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
-                                             <li className="mt-24">
+                                             <li className="mt-20">
                                                   {!roleLoading && (role === "donor" || role === "admin") && (
-                                                       <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
+                                                       <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm w-full">
                                                             Profile
                                                        </Link>
                                                   )}
