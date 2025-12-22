@@ -10,13 +10,19 @@ import { useState } from "react";
 import EditDonorModal from "./EditDonorModal";
 
 const Profile = () => {
-     const { user } = useAuth();
+     const { user, loading } = useAuth();
      const { role, roleLoading } = useRole();
      const [isEditOpen, setIsEditOpen] = useState(false);
      const axiosPublic = useAxios();
      const navigate = useNavigate();
      const queryClient = useQueryClient();
      // redirect normal user
+     if (loading) {
+          <Loader></Loader>
+     }
+     if (!user) {
+          navigate('/')
+     }
      if (!roleLoading && role === "user") {
           <Loader></Loader>
           navigate("/be-a-donor");

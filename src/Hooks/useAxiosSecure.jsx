@@ -1,25 +1,38 @@
 import axios from "axios";
 import useAuth from "./useAuth";
+import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-     baseURL: `http://localhost:5000`
+     baseURL: `${import.meta.env.VITE_API_URL}`
 })
 
 const useAxiosSecure = () => {
-     const { user } = useAuth();
+     const { user, logOutUser } = useAuth();
      console.log('use axios', user);
-     axiosSecure.interceptors.request.use(
-          async (config) => {
-               if (user) {
-                    const token = user?.accessToken
-                    config.headers.Authorization = `Bearer ${token}`
+     useEffect(() => {
+          const requestInterceptor = axiosSecure.interceptors.request.use(
+               (config) => {
+                    if (user?.accessToken) {
+                         config.headers.Authorization = `Bearer ${user?.accessToken}`
+                    }
+                    return config;
                }
-               return config
-          },
-          (error)=>{
-               return Promise.reject(error)
+          )
+          // 
+          const responseInterceptor = axiosSecure.interceptors.response.use(
+               (response) => response,
+               (error) => {
+                    if (error.response?.status === 401 || error.response?.status === 403)
+                         logOutUser()
+               }
+          );
+
+          return () => {
+               axiosSecure.interceptors.request.eject(requestInterceptor)
+               axiosSecure.interceptors.response.eject(responseInterceptor)
           }
-     )
+
+     }, [user, logOutUser])
 
      return axiosSecure
 };
