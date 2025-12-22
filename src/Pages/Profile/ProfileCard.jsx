@@ -14,6 +14,7 @@ const ProfileCard = ({ donor, onDelete, setIsEditOpen }) => {
     lastDonateDate,
     status,
     role,
+    age
   } = donor;
 
   return (
@@ -53,6 +54,7 @@ const ProfileCard = ({ donor, onDelete, setIsEditOpen }) => {
             </p>
             <p><strong>Gender:</strong> {gender}</p>
             <p><strong>Address:</strong> {address}</p>
+            <p><strong>Age:</strong> <span className="font-medium">{age}</span></p>
           </div>
         </div>
       </div>

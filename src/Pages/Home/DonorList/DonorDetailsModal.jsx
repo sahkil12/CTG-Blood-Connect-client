@@ -17,6 +17,7 @@ const DonorDetailsModal = ({ donor, onClose }) => {
     profileImage,
     status,
     lastDonateDate,
+    age
   } = donor;
 
   const donationStatus = getDonationStatus(lastDonateDate);
@@ -73,6 +74,9 @@ const DonorDetailsModal = ({ donor, onClose }) => {
 
           <p className="font-medium">
             Status: <span className="capitalize">{status}</span>
+          </p>
+          <p className="font-medium">
+            Age: <span className="capitalize">{age}</span>
           </p>
         </div>
         {/* Action */}

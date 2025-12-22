@@ -28,6 +28,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     ? donor.lastDonateDate.split("T")[0]
                     : "",
                address: donor.address,
+               age:donor.age
           },
      });
      // update mutation
@@ -70,6 +71,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     lastDonateDate: data.lastDonateDate || null,
                     address: data.address,
                     profileImage: imageUrl,
+                    age: data.age
                };
                // mutation function call
                updateMutation.mutate(updatedDonor);
@@ -145,23 +147,46 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                                    )}
                               </div>
                          </div>
-                         {/* Phone */}
-                         <div>
-                              <input
-                                   placeholder="Phone Number"
-                                   className={`input border-2 py-4 md:py-5 px-4 text-base w-full outline-none
-                ${errors.phone ? "border-red-400" : "border-gray-300"}
-                focus:border-gray-400`}
-                                   {...register("phone", {
-                                        required: true,
-                                        pattern: /^(?:\+8801|01)[3-9]\d{8}$/
-                                   })}
-                              />
-                              {errors.phone && (
-                                   <p className="text-red-500 text-sm mt-1">
-                                        Valid phone number required
-                                   </p>
-                              )}
+                         {/* phone + age  */}
+                         <div className="flex flex-col md:flex-row gap-4">
+                              {/* Phone */}
+                              <div className="flex-1">
+                                   <input
+                                        placeholder="Phone Number"
+                                        className={`input border-2 py-4 md:py-5 px-4 text-base w-full outline-none
+                                               ${errors.phone ? "border-red-400" : "border-gray-300"}
+                                               focus:border-gray-400`}
+                                        {...register("phone", {
+                                             required: true,
+                                             pattern: /^(?:\+8801|01)[3-9]\d{8}$/
+                                        })}
+                                   />
+                                   {errors.phone && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                             Valid phone number required
+                                        </p>
+                                   )}
+                              </div>
+                              {/* Age */}
+                              <div className="flex-1">
+                                   <input
+                                        type="number"
+                                        placeholder="Your Age"
+                                        className={`input border-2 py-4 md:py-5 px-4 text-base w-full outline-none
+                                               ${errors.age ? "border-red-400" : "border-gray-300"}
+                                               focus:border-gray-400`}
+                                        {...register("age",
+                                             {
+                                                  required: true,
+                                                  min: 18
+                                             })}
+                                   />
+                                   {errors.age && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                             Donor Age Must be 18+
+                                        </p>
+                                   )}
+                              </div>
                          </div>
                          {/* Area + Date */}
                          <div className="flex flex-col md:flex-row gap-4">
@@ -169,8 +194,8 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                                    <select
                                         {...register("area", { required: true })}
                                         className={`select select-md md:select-lg border-2 px-4 text-base w-full outline-none
-                  ${errors.area ? "border-red-400" : "border-gray-300"}
-                  focus:border-gray-400`}
+                                          ${errors.area ? "border-red-400" : "border-gray-300"}
+                                                focus:border-gray-400`}
                                    >
                                         <option value="">Select Area</option>
                                         {areas.map((a) => (
@@ -224,14 +249,14 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <button
                                    type="button"
                                    onClick={closeModal}
-                                   className="btn text-xs md:text-sm btn-ghost outline outline-gray-300 lg:outline-gray-200 px-5"
+                                   className="py-2 border rounded-sm font-semibold border-gray-300 px-6 text-xs md:text-sm btn-ghost cursor-pointer"
                               >
                                    Cancel
                               </button>
                               <button
                                    type="submit"
                                    disabled={uploading}
-                                   className="bg-red-400 hover:bg-red-500/80 text-white px-6 py-2 font-semibold rounded-sm transition text-xs md:text-sm"
+                                   className="bg-red-400 hover:bg-red-500/80 text-white px-6 py-2 font-semibold rounded-sm cursor-pointer transition text-xs md:text-sm"
                               >
                                    {uploading ? <span className="loading loading-dots loading-md"></span> : "Update Profile"}
                               </button>

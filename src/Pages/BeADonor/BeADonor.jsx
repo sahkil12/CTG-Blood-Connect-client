@@ -54,6 +54,7 @@ const BeADonor = () => {
         email: user.email,
         status: "available",
         createdAt: new Date().toISOString(),
+        age: parseInt(data.age)
       };
       // post donor data 
       const res = await axiosPublic.post('/donors', donorData)
@@ -98,8 +99,8 @@ const BeADonor = () => {
             {/* 2 column filed */}
             <div className="flex flex-col md:flex-row gap-4">
               {/* Gender */}
-              <div className="flex-1 flex-col gap-2">
-                <label className="font-medium text-sm text-gray-700">Select Gender</label>
+              <div className="flex-1 flex flex-col gap-2">
+                <label className="font-medium text-sm text-gray-700 ">Select Gender</label>
                 <select
                   className="select select-lg border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
                   {...register("gender", { required: true })}
@@ -116,7 +117,7 @@ const BeADonor = () => {
                 )}
               </div>
               {/* Blood Group */}
-              <div className="flex-1 flex-col gap-2">
+              <div className="flex-1 flex flex-col gap-2">
                 <label className="font-medium text-sm text-gray-700">Select Your Blood Group</label>
                 <select
                   className="select select-lg border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
@@ -130,25 +131,43 @@ const BeADonor = () => {
                 {errors.bloodGroup && <p className="text-red-500 text-sm mt-1">Blood Group is required</p>}
               </div>
             </div>
-            {/* Phone Number */}
-            <div className="flex flex-col gap-2">
-              <label className="font-medium text-sm text-gray-700">Your valid Phone number</label>
-              <input
-                type="tel"
-                placeholder="Phone Number "
-                className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                {...register("phone",
-                  {
-                    required: true,
-                    pattern: /^(?:\+8801|01)[3-9]\d{8}$/
-                  })}
-              />
-              {errors.phone && <p className="text-red-500 text-sm mt-1">Valid phone number required</p>}
+
+            <div className="flex-1 flex flex-col md:flex-row gap-4">
+              {/* Phone Number */}
+              <div className="flex-1 flex flex-col gap-2">
+                <label className="font-medium text-sm text-gray-700">Your valid Phone number</label>
+                <input
+                  type="tel"
+                  placeholder="Phone Number "
+                  className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                  {...register("phone",
+                    {
+                      required: true,
+                      pattern: /^(?:\+8801|01)[3-9]\d{8}$/
+                    })}
+                />
+                {errors.phone && <p className="text-red-500 text-sm mt-1">Valid phone number required</p>}
+              </div>
+                {/* Age */}
+              <div className="flex-1 flex flex-col gap-2">
+                <label className="font-medium text-sm text-gray-700">Your Age</label>
+                <input
+                  type="number"
+                  placeholder="Your Age"
+                  className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
+                  {...register("age",
+                    {
+                      required: true,
+                      min: 18
+                    })}
+                />
+                {errors.age && <p className="text-red-500 text-sm mt-1">Donor Age Must be 18+</p>}
+              </div>   
             </div>
             {/* 2 column */}
             <div className="flex flex-col md:flex-row gap-4">
               {/* Area */}
-              <div className="flex-1 flex-col gap-2">
+              <div className="flex-1 flex flex-col gap-2">
                 <label className="font-medium text-sm text-gray-700">Select Your Area</label>
                 <select
                   className="select select-lg border-2 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
@@ -162,7 +181,7 @@ const BeADonor = () => {
                 {errors.area && <p className="text-red-500 text-sm mt-1">Area is required</p>}
               </div>
               {/* Last Donate Date */}
-              <div className="flex-1 flex-col gap-2">
+              <div className="flex-1 flex flex-col gap-2">
                 <label className="font-medium text-sm text-gray-700">Last Donate Date</label>
                 <input
                   type="date"
