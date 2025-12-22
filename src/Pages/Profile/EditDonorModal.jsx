@@ -77,7 +77,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                toast.error("Failed to update profile");
           }
           finally {
-               setUploading(false); 
+               setUploading(false);
           }
      };
 
@@ -87,7 +87,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
                          Edit Donor Profile
                     </h3>
-                    <p className="text-gray-600 mb-7 text-sm">
+                    <p className="text-gray-600 mb-6 text-sm">
                          Update your donor information carefully
                     </p>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -95,7 +95,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                          <div>
                               <input
                                    placeholder="Full Name"
-                                   className={`input border-2 py-5 px-4 text-base w-full outline-none
+                                   className={`input border-2 py-4 md:py-5 px-4 text-base w-full outline-none
                                 ${errors.name ? "border-red-400" : "border-gray-300"}
                                    focus:border-gray-400`}
                                    {...register("name", { required: true, minLength: 5 })}
@@ -111,7 +111,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <div className="flex-1">
                                    <select
                                         {...register("gender", { required: true })}
-                                        className={`select select-lg border-2 px-4 text-base w-full outline-none
+                                        className={`select select-md md:select-lg border-2 px-4 text-base w-full outline-none
                                           ${errors.gender ? "border-red-400" : "border-gray-300"}
                                                    focus:border-gray-400`}
                                    >
@@ -129,7 +129,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <div className="flex-1">
                                    <select
                                         {...register("bloodGroup", { required: true })}
-                                        className={`select select-lg border-2 px-4 text-base w-full outline-none
+                                        className={`select select-md md:select-lg border-2 px-4 text-base w-full outline-none
                   ${errors.bloodGroup ? "border-red-400" : "border-gray-300"}
                   focus:border-gray-400`}
                                    >
@@ -149,10 +149,13 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                          <div>
                               <input
                                    placeholder="Phone Number"
-                                   className={`input border-2 py-5 px-4 text-base w-full outline-none
+                                   className={`input border-2 py-4 md:py-5 px-4 text-base w-full outline-none
                 ${errors.phone ? "border-red-400" : "border-gray-300"}
                 focus:border-gray-400`}
-                                   {...register("phone", { required: true })}
+                                   {...register("phone", {
+                                        required: true,
+                                        pattern: /^(?:\+8801|01)[3-9]\d{8}$/
+                                   })}
                               />
                               {errors.phone && (
                                    <p className="text-red-500 text-sm mt-1">
@@ -165,7 +168,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <div className="flex-1">
                                    <select
                                         {...register("area", { required: true })}
-                                        className={`select select-lg border-2 px-4 text-base w-full outline-none
+                                        className={`select select-md md:select-lg border-2 px-4 text-base w-full outline-none
                   ${errors.area ? "border-red-400" : "border-gray-300"}
                   focus:border-gray-400`}
                                    >
@@ -183,7 +186,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <div className="flex-1">
                                    <input
                                         type="date"
-                                        className="input border-2 py-5 px-4 text-base border-gray-300 w-full outline-none focus:border-gray-400"
+                                        className="input border-2 py-4 md:py-5 px-4 text-base border-gray-300 w-full outline-none focus:border-gray-400"
                                         {...register("lastDonateDate")}
                                    />
                               </div>
@@ -191,8 +194,8 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                          {/* Image */}
                          <div>
                               <div
-                                   className={`border-2 p-1 border-dashed
-                ${errors.profileImage ? "border-red-300" : "border-red-200"}`}
+                                   className={`border-2 p-0 md:p-1 border-dashed
+                                   ${errors.profileImage ? "border-red-300" : "border-red-200"}`}
                               >
                                    <input
                                         type="file"
@@ -217,18 +220,18 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               />
                          </div>
                          {/* Actions */}
-                         <div className="flex justify-end gap-3 pt-3">
+                         <div className="flex justify-end gap-3 pt-2">
                               <button
                                    type="button"
                                    onClick={closeModal}
-                                   className="btn btn-ghost outline outline-gray-200 px-8"
+                                   className="btn text-xs md:text-sm btn-ghost outline outline-gray-300 lg:outline-gray-200 px-5"
                               >
                                    Cancel
                               </button>
                               <button
                                    type="submit"
                                    disabled={uploading}
-                                   className="bg-red-400 hover:bg-red-500/80 text-white px-6 py-2 font-semibold rounded-sm transition w-2/6"
+                                   className="bg-red-400 hover:bg-red-500/80 text-white px-6 py-2 font-semibold rounded-sm transition text-xs md:text-sm"
                               >
                                    {uploading ? <span className="loading loading-dots loading-md"></span> : "Update Profile"}
                               </button>

@@ -109,26 +109,26 @@ const Navbar = () => {
                               <Link to={'/be-a-donor'} className='cursor-pointer px-4 text-xs md:text-base md:px-6 py-2.5 bg-red-400 rounded-lg text-gray-100 font-medium'>Be a Donor</Link>
                               {
                                    user ? <div className="dropdown dropdown-end">
-                                        <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-11 h-11 sm:w-14 sm:h-14 avatar">
+                                        <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 sm:w-14 sm:h-14 avatar">
                                              <div className="border-2 flex justify-center items-center border-red-300 hover:border-red-400 rounded-full">
                                                   <img
                                                        alt="user"
-                                                       className='w-9 h-9 sm:w-12 sm:h-12 rounded-full'
+                                                       className='w-10 h-10 sm:w-12 sm:h-12 rounded-full'
                                                        src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
                                              </div>
                                         </div>
-                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-1 mt-3 w-56 md:w-64 p-3 shadow h-fit">
+                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-50 mt-3 md:w-60 shadow">
                                              <li className="text-center">
-                                                  <p className="font-semibold text-lg">{user?.displayName}</p>
+                                                  <p className="font-semibold text-base md:text-lg">{user?.displayName}</p>
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
-                                             <li className="mt-20">
+                                             <li className="mt-16">
                                                   {!roleLoading && (role === "donor" || role === "admin") && (
-                                                       <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm w-full">
+                                                       <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm ">
                                                             Profile
                                                        </Link>
                                                   )}
-                                                  <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm w-full">
+                                                  <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm ">
                                                        Logout
                                                   </button>
                                              </li>

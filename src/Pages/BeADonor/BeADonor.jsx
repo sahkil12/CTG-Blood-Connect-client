@@ -13,14 +13,12 @@ const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 
 const BeADonor = () => {
   const { user } = useAuth();
-
   const axiosPublic = useAxios()
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-
     try {
       if (!user) {
         toast.error("Please login first");
@@ -29,7 +27,7 @@ const BeADonor = () => {
       }
       let imageUrl = "";
       // upload image to imgbb
-      if (data.profileImage[0]) {
+      if (data.profileImage?.[0]) {
         setUploading(true);
         const formData = new FormData();
         formData.append("image", data.profileImage[0]);
@@ -40,7 +38,6 @@ const BeADonor = () => {
         });
         // 
         const imgData = await res.json();
-        console.log(imgData);
         imageUrl = imgData?.data?.url;
         setUploading(false);
       }
@@ -137,10 +134,14 @@ const BeADonor = () => {
             <div className="flex flex-col gap-2">
               <label className="font-medium text-sm text-gray-700">Your valid Phone number</label>
               <input
-                type="number"
+                type="tel"
                 placeholder="Phone Number "
                 className="input border-2 py-5 lg:py-6 px-4 text-base border-gray-300 placeholder-neutral-600 w-full outline-none focus:border-gray-400"
-                {...register("phone", { required: true, pattern: /^[0-9]{10,14}$/ })}
+                {...register("phone",
+                  {
+                    required: true,
+                    pattern: /^(?:\+8801|01)[3-9]\d{8}$/
+                  })}
               />
               {errors.phone && <p className="text-red-500 text-sm mt-1">Valid phone number required</p>}
             </div>
@@ -181,7 +182,7 @@ const BeADonor = () => {
                   {...register("profileImage", { required: true })}
                 />
               </div>
-                {errors.profileImage && <p className="text-red-500 text-sm mt-1">Upload Your Image</p>}
+              {errors.profileImage && <p className="text-red-500 text-sm mt-1">Upload Your Image</p>}
             </div>
             {/* Address */}
             <div className="flex flex-col gap-2">
