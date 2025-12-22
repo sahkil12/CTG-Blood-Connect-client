@@ -59,7 +59,6 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
 
                     const imgData = await res.json();
                     imageUrl = imgData?.data?.url;
-                    // setUploading(false);
                }
 
                const updatedDonor = {

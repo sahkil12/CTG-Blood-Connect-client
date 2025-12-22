@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
 import useAxios from "../../Hooks/useAxios";
@@ -15,6 +15,7 @@ const Profile = () => {
      const [isEditOpen, setIsEditOpen] = useState(false);
      const axiosPublic = useAxios();
      const navigate = useNavigate();
+     const queryClient = useQueryClient();
      // redirect normal user
      if (!roleLoading && role === "user") {
           <Loader></Loader>
@@ -33,7 +34,21 @@ const Profile = () => {
                return res.data;
           },
      });
-     // delete profile
+     // delete mutation function
+     const deleteMutation = useMutation({
+          mutationFn: async () => {
+               const res = await axiosPublic.delete(`/donors/${user.email}`);
+               return res.data;
+          },
+          onSuccess: () => {
+               queryClient.invalidateQueries(["donor-profile", user?.email]);
+               Swal.fire("Deleted!", "Your profile is removed.", "success");
+               refetch()
+               navigate("/");
+          },
+          onError: () => Swal.fire("Error", "Something went wrong", "error"),
+     });
+     // confirm sweet alert modal 
      const handleDelete = async () => {
           const result = await Swal.fire({
                title: "Are you sure?",
@@ -44,15 +59,8 @@ const Profile = () => {
                cancelButtonColor: "#6b7280",
                confirmButtonText: "Yes, delete it",
           });
-
           if (result.isConfirmed) {
-               try {
-                    await axiosPublic.delete(`/donors/${user.email}`);
-                    Swal.fire("Deleted!", "Your profile is removed.", "success");
-                    // navigate("/");
-               } catch {
-                    Swal.fire("Error", "Something went wrong", "error");
-               }
+               deleteMutation.mutate()
           }
      };
 
