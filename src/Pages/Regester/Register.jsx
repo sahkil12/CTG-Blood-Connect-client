@@ -9,6 +9,7 @@ import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
 import userImage from '../../assets/images/user-pic.png';
+
 const Register = () => {
      const { createUser, googleCreate, updateUserProfile, user } = useAuth()
      const [error, setError] = useState("");

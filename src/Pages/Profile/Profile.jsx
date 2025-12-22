@@ -2,18 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
-import useAxios from "../../Hooks/useAxios";
 import ProfileCard from "./ProfileCard";
 import Loader from "../../Components/Loader/Loader";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import EditDonorModal from "./EditDonorModal";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Profile = () => {
      const { user, loading } = useAuth();
      const { role, roleLoading } = useRole();
      const [isEditOpen, setIsEditOpen] = useState(false);
-     const axiosPublic = useAxios();
+     const axiosSecure = useAxiosSecure()
      const navigate = useNavigate();
      const queryClient = useQueryClient();
      // redirect normal user
@@ -36,14 +36,14 @@ const Profile = () => {
           queryKey: ["donor-profile", user?.email],
           enabled: !!user?.email && (role === "donor" || role === "admin"),
           queryFn: async () => {
-               const res = await axiosPublic.get(`/donors/${user.email}`);
+               const res = await axiosSecure.get(`/donors/${user.email}`);
                return res.data;
           },
      });
      // delete mutation function
      const deleteMutation = useMutation({
           mutationFn: async () => {
-               const res = await axiosPublic.delete(`/donors/${user.email}`);
+               const res = await axiosSecure.delete(`/donors/${user.email}`);
                return res.data;
           },
           onSuccess: () => {

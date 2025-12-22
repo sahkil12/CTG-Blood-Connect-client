@@ -9,7 +9,6 @@ const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const [scrolled, setScrolled] = useState(false);
      const { role, roleLoading } = useRole()
-     // console.log(role, roleLoading);
 
      useEffect(() => {
           const handleScroll = () => {
@@ -24,7 +23,7 @@ const Navbar = () => {
           return () => window.removeEventListener("scroll", handleScroll);
      }, []);
      const handleLogout = () => {
-          logOutUser().catch(err => console.log(err));
+          logOutUser();
      };
      // small device links
      const drawerNavLinkStyle = ({ isActive }) =>

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import useAxios from "../../Hooks/useAxios";
 import { bloodGroups, genders, areas } from "../../Utility/blood-info";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY;
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const EditDonorModal = ({ donor, closeModal, refetch }) => {
-     const axiosPublic = useAxios();
+     const axiosSecure = useAxiosSecure()
      const [uploading, setUploading] = useState(false);
      const queryClient = useQueryClient();
 
@@ -28,12 +28,12 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     ? donor.lastDonateDate.split("T")[0]
                     : "",
                address: donor.address,
-               age:donor.age
+               age: donor.age
           },
      });
      // update mutation
      const updateMutation = useMutation({
-          mutationFn: (updatedDonor) => axiosPublic.patch(`/donors/${donor.email}`, updatedDonor),
+          mutationFn: (updatedDonor) => axiosSecure.patch(`/donors/${donor.email}`, updatedDonor),
           onSuccess: () => {
                queryClient.invalidateQueries(["donor"]);
                toast.success("Profile updated successfully");

@@ -5,15 +5,15 @@ import Lottie from "lottie-react";
 import donorAnimation from "../../assets/lottie/Find-Blood-Donor.json";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import useAxios from "../../Hooks/useAxios";
 import { bloodGroups, genders, areas } from "../../Utility/blood-info";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 // imgbb setup
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BeADonor = () => {
   const { user } = useAuth();
-  const axiosPublic = useAxios()
+  const axiosSecure = useAxiosSecure()
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
@@ -57,7 +57,7 @@ const BeADonor = () => {
         age: parseInt(data.age)
       };
       // post donor data 
-      const res = await axiosPublic.post('/donors', donorData)
+      const res = await axiosSecure.post('/donors', donorData)
       if (res.data.insertedId) {
         toast.success("Donor registered successfully");
         reset();
