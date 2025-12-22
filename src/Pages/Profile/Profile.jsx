@@ -5,11 +5,14 @@ import useRole from "../../Hooks/useRole";
 import useAxios from "../../Hooks/useAxios";
 import ProfileCard from "./ProfileCard";
 import Loader from "../../Components/Loader/Loader";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import EditDonorModal from "./EditDonorModal";
 
 const Profile = () => {
      const { user } = useAuth();
      const { role, roleLoading } = useRole();
+     const [isEditOpen, setIsEditOpen] = useState(false);
      const axiosPublic = useAxios();
      const navigate = useNavigate();
      // redirect normal user
@@ -29,19 +32,32 @@ const Profile = () => {
                return res.data;
           },
      });
-     const handleEdit = () => {
-          // navigate("/profile/edit");
-          navigate("/profile");
-            toast.success("Donor profile edited");
-     };
-
+     // const handleEdit = () => {
+     //      // navigate("/profile/edit");
+     //      navigate("/profile");
+     //      toast.success("Donor profile edited");
+     // };
+     // delete profile
      const handleDelete = async () => {
-          // const confirm = window.confirm("Are you sure you want to delete your donor profile?");
-          // if (!confirm) return;
+          const result = await Swal.fire({
+               title: "Are you sure?",
+               text: "Your donor profile will be removed!",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#ef4444",
+               cancelButtonColor: "#6b7280",
+               confirmButtonText: "Yes, delete it",
+          });
 
-          // await axiosPublic.delete(`/donors/${user.email}`);
-          toast.success("Donor profile deleted");
-          // navigate("/");
+          if (result.isConfirmed) {
+               try {
+                    // await axiosPublic.delete(`/donors/${user.email}`);
+                    Swal.fire("Deleted!", "Your profile is removed.", "success");
+                    // navigate("/");
+               } catch (err) {
+                    Swal.fire("Error", "Something went wrong", "error");
+               }
+          }
      };
 
      if (roleLoading || isLoading) {
@@ -56,13 +72,22 @@ const Profile = () => {
                <h2 className="text-3xl font-bold mb-8">My Profile</h2>
 
                {donor ? (
-                    <ProfileCard donor={{ ...donor, role }}
-                         onEdit={handleEdit}
+                    <ProfileCard
+                         donor={{ ...donor, role }}
                          onDelete={handleDelete}
+                         setIsEditOpen={setIsEditOpen}
                     />
                ) : (
                     <p className="text-gray-500">No donor information found.</p>
                )}
+               {
+                    isEditOpen && (
+                         <EditDonorModal
+                              donor={donor}
+                              closeModal={() => setIsEditOpen(false)}
+                         />
+                    )
+               }
           </div>
      );
 };
