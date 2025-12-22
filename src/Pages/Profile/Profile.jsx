@@ -24,6 +24,7 @@ const Profile = () => {
           data: donor,
           isLoading,
           isError,
+          refetch
      } = useQuery({
           queryKey: ["donor-profile", user?.email],
           enabled: !!user?.email && (role === "donor" || role === "admin"),
@@ -32,11 +33,6 @@ const Profile = () => {
                return res.data;
           },
      });
-     // const handleEdit = () => {
-     //      // navigate("/profile/edit");
-     //      navigate("/profile");
-     //      toast.success("Donor profile edited");
-     // };
      // delete profile
      const handleDelete = async () => {
           const result = await Swal.fire({
@@ -51,10 +47,10 @@ const Profile = () => {
 
           if (result.isConfirmed) {
                try {
-                    // await axiosPublic.delete(`/donors/${user.email}`);
+                    await axiosPublic.delete(`/donors/${user.email}`);
                     Swal.fire("Deleted!", "Your profile is removed.", "success");
                     // navigate("/");
-               } catch (err) {
+               } catch {
                     Swal.fire("Error", "Something went wrong", "error");
                }
           }
@@ -66,7 +62,6 @@ const Profile = () => {
      if (isError) {
           return <div className="text-center py-20 text-red-500">Failed to load profile</div>;
      }
-
      return (
           <div className="max-w-6xl mx-auto px-4 py-16 lg:py-20">
                <h2 className="text-3xl font-bold mb-8">My Profile</h2>
@@ -85,6 +80,7 @@ const Profile = () => {
                          <EditDonorModal
                               donor={donor}
                               closeModal={() => setIsEditOpen(false)}
+                              refetch={refetch}
                          />
                     )
                }

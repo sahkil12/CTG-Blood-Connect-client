@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
 import { bloodGroups, genders, areas } from "../../Utility/blood-info";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY;
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -10,6 +11,7 @@ const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 const EditDonorModal = ({ donor, closeModal, refetch }) => {
      const axiosPublic = useAxios();
      const [uploading, setUploading] = useState(false);
+     const queryClient = useQueryClient();
 
      const {
           register,
@@ -28,13 +30,25 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                address: donor.address,
           },
      });
+     // update mutation
+     const updateMutation = useMutation({
+          mutationFn: (updatedDonor) => axiosPublic.patch(`/donors/${donor.email}`, updatedDonor),
+          onSuccess: () => {
+               queryClient.invalidateQueries(["donor"]);
+               toast.success("Profile updated successfully");
+               refetch();
+               closeModal();
+          },
+          onError: () => toast.error("Failed to update profile"),
+     });
 
      const onSubmit = async (data) => {
+          setUploading(true);
           try {
                let imageUrl = donor.profileImage;
 
                if (data.profileImage?.[0]) {
-                    setUploading(true);
+
                     const formData = new FormData();
                     formData.append("image", data.profileImage[0]);
 
@@ -45,7 +59,7 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
 
                     const imgData = await res.json();
                     imageUrl = imgData?.data?.url;
-                    setUploading(false);
+                    // setUploading(false);
                }
 
                const updatedDonor = {
@@ -58,13 +72,13 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     address: data.address,
                     profileImage: imageUrl,
                };
-               // await axiosPublic.patch(`/donors/${donor.email}`, updatedDonor);
-
-               toast.success("Profile updated successfully");
-               refetch();
-               closeModal();
+               // mutation function call
+               updateMutation.mutate(updatedDonor);
           } catch {
                toast.error("Failed to update profile");
+          }
+          finally {
+               setUploading(false); 
           }
      };
 
@@ -208,14 +222,14 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                               <button
                                    type="button"
                                    onClick={closeModal}
-                                   className="btn btn-ghost outline outline-gray-200"
+                                   className="btn btn-ghost outline outline-gray-200 px-8"
                               >
                                    Cancel
                               </button>
                               <button
                                    type="submit"
                                    disabled={uploading}
-                                   className="bg-red-400 hover:bg-red-500 text-white px-6 py-2 font-semibold rounded-sm transition"
+                                   className="bg-red-400 hover:bg-red-500/80 text-white px-6 py-2 font-semibold rounded-sm transition w-2/6"
                               >
                                    {uploading ? <span className="loading loading-dots loading-md"></span> : "Update Profile"}
                               </button>
