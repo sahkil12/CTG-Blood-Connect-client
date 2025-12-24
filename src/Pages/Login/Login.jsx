@@ -22,10 +22,11 @@ const Login = () => {
           const password = e.target.password.value;
           loginUser(email, password)
                .then(() => {
-                    navigate('/')
                     toast.success("You are Login Successfully")
+                    navigate('/')
                })
                .catch((error) => {
+                    console.error(error);
                     setError(error.message)
                });
      };

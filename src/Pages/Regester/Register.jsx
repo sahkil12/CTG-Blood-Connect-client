@@ -21,6 +21,8 @@ const Register = () => {
      const saveUserToDB = async (user) => {
           try {
                await axiosPublic.post('/users', user);
+               toast.success("Your Account is Successfully Created");
+               navigate("/be-a-donor");
           } catch (err) {
                setError(err.message)
           }
@@ -30,7 +32,7 @@ const Register = () => {
           const name = e.target.name.value.trim();
           const email = e.target.email.value;
           const password = e.target.password.value;
-          const photo = {userImage}
+          const photo = userImage
           if (name.length < 5) {
                setNameError("Name must be at least 5 characters")
                return
@@ -46,10 +48,9 @@ const Register = () => {
                     photoURL: photo,
                });
                // Backend save
-               saveUserToDB({ name, email, photo })
-
-               toast.success("Your Account is Successfully Created");
-               navigate("/be-a-donor");
+               await saveUserToDB({ name, email, photo })
+               // toast.success("Your Account is Successfully Created");
+               // navigate("/be-a-donor");
           } catch (error) {
                setError(error.message);
           }
@@ -63,8 +64,8 @@ const Register = () => {
                const email = userInfo?.email
                const photo = userInfo?.photoURL
                saveUserToDB({ name, email, photo })
-               toast.success("Your Account is Successfully Created");
-               navigate("/be-a-donor");
+               // toast.success("Your Account is Successfully Created");
+               // navigate("/be-a-donor");
           } catch (error) {
                setError(error.message);
           }

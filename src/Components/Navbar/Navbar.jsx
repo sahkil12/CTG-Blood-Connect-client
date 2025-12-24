@@ -9,7 +9,7 @@ const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const [scrolled, setScrolled] = useState(false);
      const { role, roleLoading } = useRole()
-
+     
      useEffect(() => {
           const handleScroll = () => {
                if (window.scrollY > 0) {

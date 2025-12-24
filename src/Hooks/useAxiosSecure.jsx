@@ -1,5 +1,6 @@
 import axios from "axios";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
@@ -8,31 +9,72 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
      const { user, logOutUser } = useAuth();
+     const navigate = useNavigate()
+
      useEffect(() => {
           const requestInterceptor = axiosSecure.interceptors.request.use(
-               (config) => {
-                    if (user?.accessToken) {
-                         config.headers.Authorization = `Bearer ${user?.accessToken}`
+               async (config) => {
+                    if (user) {
+                         const token = await user.getIdToken();
+                         config.headers.Authorization = `Bearer ${token}`;
                     }
                     return config;
                }
-          )
-          // 
+          );
+
           const responseInterceptor = axiosSecure.interceptors.response.use(
-               (response) => response,
-               (error) => {
-                    if (error.response?.status === 401 || error.response?.status === 403)
-                         logOutUser()
+               res => res,
+               async (error) => {
+                    const status = error.response?.status;
+
+                    if (status === 401) {
+                         await logOutUser();
+                         navigate("/login");
+                    }
+
+                    if (status === 403) {
+                         navigate("/forbiddenPage");
+                    }
+
+                    return Promise.reject(error);
                }
           );
 
           return () => {
-               axiosSecure.interceptors.request.eject(requestInterceptor)
-               axiosSecure.interceptors.response.eject(responseInterceptor)
-          }
+               axiosSecure.interceptors.request.eject(requestInterceptor);
+               axiosSecure.interceptors.response.eject(responseInterceptor);
+          };
+     }, [user, logOutUser, navigate]);
 
-     }, [user, logOutUser])
+     // axiosSecure.interceptors.request.use(
+     //      async (config) => {
+     //           if (user) {
+     //                const token = await user.getIdToken();
+     //                config.headers.Authorization = `Bearer ${token}`;
+     //           }
+     //           return config;
+     //      },
+     //      (error) => {
+     //           return Promise.reject(error);
+     //      }
+     // );
 
+     // axiosSecure.interceptors.response.use(res => {
+     //      return res;
+     // }, async (error) => {
+     //      const status = error.response?.status
+     //      if (status === 401) {
+     //           await logOutUser()
+     //                .then(() => {
+     //                     navigate('/login')
+     //                })
+     //                .catch(() => { })
+     //      }
+     //      else if (status === 403) {
+     //           navigate('/')
+     //      }
+     //      return Promise.reject(error)
+     // })
      return axiosSecure
 };
 

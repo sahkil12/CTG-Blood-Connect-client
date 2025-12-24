@@ -58,7 +58,7 @@ const BeADonor = () => {
       };
       // post donor data 
       const res = await axiosSecure.post('/donors', donorData)
-      if (res.data.insertedId) {
+      if (res?.data.insertedId) {
         toast.success("Donor registered successfully");
         reset();
         navigate("/");
