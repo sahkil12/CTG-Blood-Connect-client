@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png'
 import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
@@ -7,6 +7,7 @@ import useRole from '../../Hooks/useRole';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
+     const navigate = useNavigate();
      const [scrolled, setScrolled] = useState(false);
      const { role, roleLoading, isDonor } = useRole()
      const donor = role === 'donor' || isDonor
@@ -24,6 +25,7 @@ const Navbar = () => {
      }, []);
      const handleLogout = () => {
           logOutUser();
+          navigate('/login')
      };
      // small device links
      const drawerNavLinkStyle = ({ isActive }) =>
@@ -105,7 +107,11 @@ const Navbar = () => {
                               </ul>
                          </div>
                          <div className="flex items-center gap-2 md:gap-4">
-                              <Link to={'/be-a-donor'} className='cursor-pointer px-4 text-xs md:text-base md:px-6 py-2.5 bg-red-400 rounded-lg text-gray-100 font-medium'>Be a Donor</Link>
+                              {!donor && role !== 'admin' && (
+                                   <Link to="/be-a-donor" className="px-5 py-2 bg-red-400 rounded-lg text-white">
+                                        Be a Donor
+                                   </Link>
+                              )}
                               {
                                    user ? <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className="cursor-pointer rounded-full w-12 h-12 sm:w-14 sm:h-14 avatar">

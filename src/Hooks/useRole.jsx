@@ -15,7 +15,6 @@ const useRole = () => {
     },
   });
 
-
   const role = data?.role || 'user'
   const isDonor = data?.isDonor || false
   return {
