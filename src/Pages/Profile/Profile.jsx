@@ -5,28 +5,39 @@ import useRole from "../../Hooks/useRole";
 import ProfileCard from "./ProfileCard";
 import Loader from "../../Components/Loader/Loader";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditDonorModal from "./EditDonorModal";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Profile = () => {
      const { user, loading } = useAuth();
-     const { role, roleLoading } = useRole();
+     const { role, roleLoading, isDonor } = useRole();
      const [isEditOpen, setIsEditOpen] = useState(false);
      const axiosSecure = useAxiosSecure()
      const navigate = useNavigate();
      const queryClient = useQueryClient();
+     const donorRole = role === 'donor' || isDonor
+     const donorAccess = donorRole || role === "admin";
      // redirect normal user
-     if (loading) {
-          <Loader></Loader>
-     }
-     if (!user) {
-          navigate('/')
-     }
-     if (!roleLoading && role === "user") {
-          <Loader></Loader>
-          navigate("/be-a-donor");
-     }
+     // if (!user) {
+     //      navigate('/')
+     // }
+     // if (!roleLoading && isDonor === false) {
+     //      <Loader></Loader>
+     //      navigate("/be-a-donor");
+     // }
+     useEffect(() => {
+          if (!loading && !user) {
+               navigate("/");
+          }
+     }, [user, loading, navigate]);
+
+     useEffect(() => {
+          if (!roleLoading && user && !donorAccess) {
+               navigate("/be-a-donor");
+          }
+     }, [roleLoading, donorAccess, user, navigate]);
+
      const {
           data: donor,
           isLoading,
@@ -34,7 +45,7 @@ const Profile = () => {
           refetch
      } = useQuery({
           queryKey: ["donor-profile", user?.email],
-          enabled: !!user?.email && (role === "donor" || role === "admin"),
+          enabled: !!user?.email && (donorRole || role === "admin"),
           queryFn: async () => {
                const res = await axiosSecure.get(`/donors/${user.email}`);
                return res.data;
@@ -48,8 +59,9 @@ const Profile = () => {
           },
           onSuccess: () => {
                queryClient.invalidateQueries(["donor-profile", user?.email]);
+               queryClient.invalidateQueries(["user-role", user?.email]);
                Swal.fire("Deleted!", "Your profile is removed.", "success");
-               refetch()
+               // refetch()
                navigate("/");
           },
           onError: () => Swal.fire("Error", "Something went wrong", "error"),
@@ -70,11 +82,15 @@ const Profile = () => {
           }
      };
 
-     if (roleLoading || isLoading) {
-          return <Loader></Loader>
+     if (loading || roleLoading || isLoading) {
+          return <Loader />;
      }
      if (isError) {
-          return <div className="text-center py-20 text-red-500">Failed to load profile</div>;
+          return (
+               <div className="text-center py-20 text-red-500">
+                    Failed to load profile
+               </div>
+          );
      }
      return (
           <div className="max-w-6xl mx-auto px-4 py-16 lg:py-20">

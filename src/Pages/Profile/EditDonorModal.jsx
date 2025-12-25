@@ -35,9 +35,9 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
      const updateMutation = useMutation({
           mutationFn: (updatedDonor) => axiosSecure.patch(`/donors/${donor.email}`, updatedDonor),
           onSuccess: () => {
-               queryClient.invalidateQueries(["donor"]);
+               queryClient.invalidateQueries(["donor-profile", donor.email]);
                toast.success("Profile updated successfully");
-               refetch();
+               // refetch();
                closeModal();
           },
           onError: () => toast.error("Failed to update profile"),
@@ -59,7 +59,11 @@ const EditDonorModal = ({ donor, closeModal, refetch }) => {
                     });
 
                     const imgData = await res.json();
-                    imageUrl = imgData?.data?.url;
+                    if (!imgData?.success) {
+                         throw new Error("Image upload failed");
+                    }
+
+                    imageUrl = imgData?.data.url;
                }
 
                const updatedDonor = {

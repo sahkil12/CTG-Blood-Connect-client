@@ -8,8 +8,8 @@ import useRole from '../../Hooks/useRole';
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const [scrolled, setScrolled] = useState(false);
-     const { role, roleLoading } = useRole()
-     
+     const { role, roleLoading, isDonor } = useRole()
+     const donor = role === 'donor' || isDonor
      useEffect(() => {
           const handleScroll = () => {
                if (window.scrollY > 0) {
@@ -70,7 +70,7 @@ const Navbar = () => {
                                         </div>
                                         {/*  */}
                                         <div className='mb-2'>
-                                             {!roleLoading && (role === "donor" || role === "admin") && (
+                                             {!roleLoading && (donor || role === "admin") && (
                                                   <Link to={'/profile'} className="btn bg-neutral-200 mb-4 btn-md w-full">
                                                        Profile
                                                   </Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
                                                   <p className="text-sm text-gray-600">{user?.email}</p>
                                              </li>
                                              <li className="mt-16">
-                                                  {!roleLoading && (role === "donor" || role === "admin") && (
+                                                  {!roleLoading && (donor || role === "admin") && (
                                                        <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm ">
                                                             Profile
                                                        </Link>
