@@ -17,6 +17,8 @@ import BeADonor from '../src/Pages/BeADonor/BeADonor.jsx';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Profile from './Pages/Profile/Profile.jsx';
+import AdminDashboard from './Pages/Dashboard/AdminDashboard/AdminDashboard.jsx';
+import AdminRoute from './Provider/AdminRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
         element: <Donors></Donors>
       },
       {
-        path:'be-a-donor',
+        path: 'be-a-donor',
         element: <BeADonor></BeADonor>
       },
       {
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
     element: <AuthLayout></AuthLayout>,
     children: [
       {
-        path:'login',
+        path: 'login',
         element: <Login></Login>
       },
       {
@@ -58,6 +60,13 @@ const router = createBrowserRouter([
         element: <Register></Register>
       }
     ]
+  },
+  {
+    path: '/dashboard',
+    element: <AdminRoute>
+      <AdminDashboard>
+      </AdminDashboard>
+    </AdminRoute>
   }
 ]);
 
@@ -67,9 +76,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-      <RouterProvider router={router} />
-       <Toaster />
-    </AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   </StrictMode>,
 )
