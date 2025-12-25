@@ -18,14 +18,7 @@ const Profile = () => {
      const queryClient = useQueryClient();
      const donorRole = role === 'donor' || isDonor
      const donorAccess = donorRole || role === "admin";
-     // redirect normal user
-     // if (!user) {
-     //      navigate('/')
-     // }
-     // if (!roleLoading && isDonor === false) {
-     //      <Loader></Loader>
-     //      navigate("/be-a-donor");
-     // }
+
      useEffect(() => {
           if (!loading && !user) {
                navigate("/");

@@ -49,8 +49,7 @@ const Register = () => {
                });
                // Backend save
                await saveUserToDB({ name, email, photo })
-               // toast.success("Your Account is Successfully Created");
-               // navigate("/be-a-donor");
+
           } catch (error) {
                setError(error.message);
           }
@@ -64,8 +63,6 @@ const Register = () => {
                const email = userInfo?.email
                const photo = userInfo?.photoURL
                saveUserToDB({ name, email, photo })
-               // toast.success("Your Account is Successfully Created");
-               // navigate("/be-a-donor");
           } catch (error) {
                setError(error.message);
           }

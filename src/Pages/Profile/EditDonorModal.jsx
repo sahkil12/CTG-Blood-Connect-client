@@ -8,7 +8,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY;
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const EditDonorModal = ({ donor, closeModal, refetch }) => {
+const EditDonorModal = ({ donor, closeModal }) => {
      const axiosSecure = useAxiosSecure()
      const [uploading, setUploading] = useState(false);
      const queryClient = useQueryClient();

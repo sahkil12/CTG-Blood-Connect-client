@@ -46,35 +46,6 @@ const useAxiosSecure = () => {
           };
      }, [user, logOutUser, navigate]);
 
-     // axiosSecure.interceptors.request.use(
-     //      async (config) => {
-     //           if (user) {
-     //                const token = await user.getIdToken();
-     //                config.headers.Authorization = `Bearer ${token}`;
-     //           }
-     //           return config;
-     //      },
-     //      (error) => {
-     //           return Promise.reject(error);
-     //      }
-     // );
-
-     // axiosSecure.interceptors.response.use(res => {
-     //      return res;
-     // }, async (error) => {
-     //      const status = error.response?.status
-     //      if (status === 401) {
-     //           await logOutUser()
-     //                .then(() => {
-     //                     navigate('/login')
-     //                })
-     //                .catch(() => { })
-     //      }
-     //      else if (status === 403) {
-     //           navigate('/')
-     //      }
-     //      return Promise.reject(error)
-     // })
      return axiosSecure
 };
 
