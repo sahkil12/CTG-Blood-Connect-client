@@ -96,7 +96,7 @@ const Navbar = () => {
                               </Link>
                          </div>
                          {/*  */}
-                         <div className='hidden lg:flex'>
+                         <div className='hidden flex-1 justify-center lg:flex'>
                               <ul className='flex gap-8'>
                                    <li><NavLink to={'/'} className={navLinkStyle}>Home</NavLink></li>
                                    <li><NavLink to={'/donors'} className={navLinkStyle}>Donors</NavLink></li>

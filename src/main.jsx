@@ -17,8 +17,10 @@ import BeADonor from '../src/Pages/BeADonor/BeADonor.jsx';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Profile from './Pages/Profile/Profile.jsx';
-import AdminDashboard from './Pages/Dashboard/AdminDashboard/AdminDashboard.jsx';
 import AdminRoute from './Provider/AdminRoute.jsx';
+import DashboardLayout from './Layouts/DashboardLayout.jsx';
+import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome.jsx';
+import ManageUsers from './Pages/Dashboard/ManageUsers/ManageUsers.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,10 +66,21 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <AdminRoute>
-      <AdminDashboard>
-      </AdminDashboard>
-    </AdminRoute>
-  }
+      <DashboardLayout>
+      </DashboardLayout>
+    </AdminRoute>,
+    children: [
+      {
+        index: true,
+        element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers></ManageUsers>
+      }
+    ],
+
+  },
 ]);
 
 const queryClient = new QueryClient()
