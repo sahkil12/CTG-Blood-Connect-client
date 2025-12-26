@@ -20,11 +20,11 @@ const ProfileCard = ({ donor, onDelete, setIsEditOpen }) => {
   return (
     <div className="bg-gray-100 rounded-2xl shadow-lg border border-gray-300 p-8 lg:p-10">
       {/* top */}
-      <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-14">
+      <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
         <img
           src={profileImage}
           alt={name}
-          className="w-40 h-40 rounded-full object-cover border-4 p-1 border-red-300"
+          className="w-48 h-48 rounded-full object-cover border-4 p-1 border-red-300"
         />
         <div className="flex-1">
           <div className="flex items-center gap-3">

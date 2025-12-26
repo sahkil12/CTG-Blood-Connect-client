@@ -86,7 +86,7 @@ const Profile = () => {
           );
      }
      return (
-          <div className="max-w-6xl mx-auto px-4 py-16 lg:py-20">
+          <div className="max-w-6xl mx-auto px-4 py-8 lg:py-14">
                <h2 className="text-3xl font-bold mb-8">My Profile</h2>
 
                {donor ? (

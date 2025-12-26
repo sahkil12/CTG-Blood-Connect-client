@@ -21,6 +21,7 @@ import AdminRoute from './Provider/AdminRoute.jsx';
 import DashboardLayout from './Layouts/DashboardLayout.jsx';
 import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome.jsx';
 import ManageUsers from './Pages/Dashboard/ManageUsers/ManageUsers.jsx';
+import AdminProfile from './Pages/Dashboard/Profile/AdminProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path:"profile",
+        element: <AdminProfile></AdminProfile>
       }
     ],
 

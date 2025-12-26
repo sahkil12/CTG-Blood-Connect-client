@@ -4,6 +4,7 @@ import { RiMenuAddFill } from "react-icons/ri";
 import useAuth from '../../Hooks/useAuth';
 import { useEffect, useState } from 'react';
 import useRole from '../../Hooks/useRole';
+import { MdOutlineLogout } from 'react-icons/md';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
@@ -62,9 +63,9 @@ const Navbar = () => {
                                              </Link>
                                              <div className='border mt-8 border-gray-500'></div>
                                              <ul className=' mt-8 w-full gap-3 items-start text-black space-y-3'>
-                                                  <li><NavLink to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
-                                                  <li><NavLink to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
-                                                  <li><NavLink to={'/about'} className={drawerNavLinkStyle}>About</NavLink></li>
+                                                  <li><NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to={'/'} className={drawerNavLinkStyle}>Home</NavLink></li>
+                                                  <li><NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to={'/donors'} className={drawerNavLinkStyle}>Donors</NavLink></li>
+                                                  <li><NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to={'/about'} className={drawerNavLinkStyle}>About</NavLink></li>
                                                   {!roleLoading && role === 'admin' && (
                                                        <li><NavLink to={'/dashboard'} className={drawerNavLinkStyle}>Dashboard</NavLink></li>
                                                   )}
@@ -78,7 +79,9 @@ const Navbar = () => {
                                                   </Link>
                                              )}
                                              {
-                                                  user ? <button onClick={handleLogout} className='btn bg-red-400 text-white w-full'>Logout</button> : <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
+                                                  user ? <button onClick={handleLogout} className='btn bg-red-400 text-white w-full gap-2'>Logout <MdOutlineLogout size={18}></MdOutlineLogout> </button>
+                                                   : 
+                                                   <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
                                              }
                                         </div>
                                    </div>
@@ -134,7 +137,7 @@ const Navbar = () => {
                                                        </Link>
                                                   )}
                                                   <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm ">
-                                                       Logout
+                                                       Logout <MdOutlineLogout size={18}></MdOutlineLogout>
                                                   </button>
                                              </li>
                                         </ul>
