@@ -1,7 +1,7 @@
 
 const StatCard = ({ icon, title, value, subtitle }) => {
      return (
-          <div className="bg-white outline outline-neutral-300 border-l-4 border-red-400  rounded-xl p-5 shadow-sm hover:shadow-md transition">
+          <div className="bg-white outline outline-neutral-300 border-l-[5px] border-red-400  rounded-xl p-5 shadow-sm hover:shadow-md transition">
                <div className="flex items-center gap-5">
                     <div className="text-4xl text-red-400">{icon}</div>
                     <div>
