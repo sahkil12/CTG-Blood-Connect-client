@@ -1,14 +1,14 @@
 
 const StatCard = ({ icon, title, value, subtitle }) => {
      return (
-          <div className="bg-white border rounded-xl p-5 shadow-sm">
-               <div className="flex items-center gap-4">
-                    <div className="text-3xl text-red-400">{icon}</div>
+          <div className="bg-white outline outline-neutral-300 border-l-4 border-red-400  rounded-xl p-5 shadow-sm hover:shadow-md transition">
+               <div className="flex items-center gap-5">
+                    <div className="text-4xl text-red-400">{icon}</div>
                     <div>
-                         <h3 className="text-gray-600 text-sm">{title}</h3>
-                         <p className="text-2xl font-bold">{value}</p>
+                         <h3 className="text-gray-700 mb-1">{title}</h3>
+                         <p className="text-3xl font-bold">{value}</p>
                          {subtitle && (
-                              <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
+                              <p className="text-sm text-gray-500 mt-1.5">{subtitle}</p>
                          )}
                     </div>
                </div>

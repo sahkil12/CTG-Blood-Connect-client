@@ -13,44 +13,71 @@ const DashboardHome = () => {
                return res.data
           }
      })
-     console.log(stats, isLoading);
-     if(isLoading){
+     if (isLoading) {
           return <Loader></Loader>
      }
      const { availableDonors, last7DaysDonors, last7DaysUsers, totalAdmins, totalDonors, totalUsers } = stats
+     const unavailableDonors = totalDonors - availableDonors;
+     const donorAvailabilityRate = Math.round((availableDonors / totalDonors) * 100);
      return (
           <div>
-      <h2 className="text-2xl font-semibold mb-6">Dashboard Overview</h2>
+               <h2 className="text-2xl font-semibold mb-6">Dashboard Overview</h2>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto">
-        <StatCard
-          icon={<FaUsers />}
-          title="Total Users"
-          value={totalUsers}
-          subtitle={`+${last7DaysUsers} last 7 days`}
-        />
+               {/* Stats Grid */}
+               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+                    <StatCard
+                         icon={<FaUsers />}
+                         title="Total Users"
+                         value={totalUsers}
+                    // subtitle={`+${last7DaysUsers} last 7 days`}
+                    />
 
-        <StatCard
-          icon={<FaTint />}
-          title="Total Donors"
-          value={totalDonors}
-          subtitle={`+${last7DaysDonors} last 7 days`}
-        />
+                    <StatCard
+                         icon={<FaTint />}
+                         title="Total Donors"
+                         value={totalDonors}
+                    // subtitle={`+${last7DaysDonors} last 7 days`}
+                    />
 
-        <StatCard
-          icon={<FaHeartbeat />}
-          title="Available Donors"
-          value={availableDonors}
-        />
+                    <StatCard
+                         icon={<FaHeartbeat />}
+                         title="Available Donors"
+                         value={availableDonors}
+                    />
 
-        <StatCard
-          icon={<FaUserShield />}
-          title="Total Admins"
-          value={totalAdmins}
-        />
-      </div>
-    </div>
+                    <StatCard
+                         icon={<FaUserShield />}
+                         title="Total Admins"
+                         value={totalAdmins}
+                    />
+               </div>
+               <h3 className="text-lg font-semibold mb-4 text-gray-700">Recent Activity</h3>
+
+               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <StatCard
+                         title="New Users"
+                         value={last7DaysUsers}
+                         subtitle="Last 7 days"
+                    />
+
+                    <StatCard
+                         title="New Donors"
+                         value={last7DaysDonors}
+                         subtitle="Last 7 days"
+                    />
+
+                    <StatCard
+                         title="Unavailable Donors"
+                         value={unavailableDonors}
+                    />
+
+                    <StatCard
+                         title="Availability Rate"
+                         value={`${donorAvailabilityRate}%`}
+                    />
+               </div>
+
+          </div>
      );
 };
 
