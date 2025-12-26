@@ -18,7 +18,7 @@ const ProfileCard = ({ donor, onDelete, setIsEditOpen }) => {
   } = donor;
 
   return (
-    <div className="bg-gray-100 rounded-2xl shadow-lg border border-gray-300 p-8 lg:p-10">
+    <div className="bg-gray-100 rounded-2xl shadow-lg border border-gray-300 p-8 lg:p-12">
       {/* top */}
       <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
         <img

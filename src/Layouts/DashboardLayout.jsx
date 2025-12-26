@@ -9,8 +9,8 @@ const DashboardLayout = () => {
 
      const navLinkClass = ({ isActive }) =>
           isActive
-               ? "bg-red-400 text-white py-2 font-medium"
-               : "text-gray-700 hover:bg-red-200 py-2 font-medium";
+               ? "bg-red-400 text-white py-2.5 font-medium"
+               : "text-gray-700 hover:bg-red-200 py-2.5 font-medium";
 
      return (
           <div className="drawer lg:drawer-open">
@@ -32,7 +32,7 @@ const DashboardLayout = () => {
                     </div>
 
                     {/* Page Content */}
-                    <div className="p-4">
+                    <div className="p-4 lg:p-6">
                          <Outlet />
                     </div>
                </div>
@@ -56,18 +56,18 @@ const DashboardLayout = () => {
                               <ul className="menu p-4 gap-4 w-full mt-3">
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard" end className={navLinkClass}>
-                                             <FaHome /> Dashboard Home
+                                             <FaHome size={18}/> Dashboard Home
                                         </NavLink>
                                    </li>
 
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard/manage-users" className={navLinkClass}>
-                                             <FaUsers /> Manage Users
+                                             <FaUsers size={18}/> Manage Users
                                         </NavLink>
                                    </li>
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard/Profile" className={navLinkClass}>
-                                             <FaRegUserCircle /> Profile
+                                             <FaRegUserCircle size={18}/> Profile
                                         </NavLink>
                                    </li>
                               </ul>

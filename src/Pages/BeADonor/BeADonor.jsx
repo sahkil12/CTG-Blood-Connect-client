@@ -53,7 +53,6 @@ const BeADonor = () => {
         profileImage: imageUrl,
         email: user.email,
         status: "available",
-        createdAt: new Date().toISOString(),
         age: parseInt(data.age)
       };
       // post donor data 

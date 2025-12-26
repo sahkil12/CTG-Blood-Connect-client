@@ -5,6 +5,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useEffect, useState } from 'react';
 import useRole from '../../Hooks/useRole';
 import { MdOutlineLogout } from 'react-icons/md';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
      const { user, logOutUser } = useAuth()
@@ -133,7 +134,7 @@ const Navbar = () => {
                                              <li className="mt-16">
                                                   {!roleLoading && (donor || role === "admin") && (
                                                        <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm ">
-                                                            Profile
+                                                            Profile <FaRegUserCircle size={18}/>
                                                        </Link>
                                                   )}
                                                   <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm ">
