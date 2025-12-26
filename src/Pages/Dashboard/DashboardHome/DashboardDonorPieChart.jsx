@@ -20,7 +20,7 @@ const DashboardDonorPieChart = ({ availableDonors, unavailableDonors }) => {
         Donor Availability
       </h3>
 
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
             data={data}
@@ -28,7 +28,7 @@ const DashboardDonorPieChart = ({ availableDonors, unavailableDonors }) => {
             cy="50%"
             innerRadius={60}
             outerRadius={100}
-            paddingAngle={5}
+            paddingAngle={3}
             dataKey="value"
           >
             {data.map((_, index) => (
@@ -39,7 +39,7 @@ const DashboardDonorPieChart = ({ availableDonors, unavailableDonors }) => {
         </PieChart>
       </ResponsiveContainer>
 
-      <div className="flex justify-center gap-6 mt-4 text-sm">
+      <div className="flex justify-center gap-8 mt-4 text-sm">
         <span className="flex items-center gap-2">
           <span className="w-3 h-3 bg-green-400 rounded-full"></span>
           Available

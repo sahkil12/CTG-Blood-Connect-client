@@ -21,13 +21,13 @@ const DashboardUsersBarChart = ({ totalUsers, totalDonors, availableDonors }) =>
         Users & Donors Overview
       </h3>
 
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey="value" fill="#f87171" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="value" fill="#f87171" radius={[8, 8, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
