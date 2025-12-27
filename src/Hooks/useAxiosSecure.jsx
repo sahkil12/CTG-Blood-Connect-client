@@ -33,7 +33,7 @@ const useAxiosSecure = () => {
                     }
 
                     if (status === 403) {
-                         navigate("/forbiddenPage");
+                         navigate("/forbidden");
                     }
 
                     return Promise.reject(error);

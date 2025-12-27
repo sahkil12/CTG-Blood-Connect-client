@@ -8,6 +8,7 @@ const ManageUsers = () => {
      const axiosSecure = useAxiosSecure();
      const [searchText, setSearchText] = useState("");
      const [searchEmail, setSearchEmail] = useState("");
+     const [selectedUser, setSelectedUser] = useState(null);
 
      const { data, isLoading } = useQuery({
           queryKey: ["users", searchEmail],
@@ -15,9 +16,8 @@ const ManageUsers = () => {
                const res = await axiosSecure.get(`/admin/users?email=${searchEmail}&limit=15`)
                return res.data.users
           },
-          enabled: !!searchEmail
      })
-     
+
      const handleSearch = () => {
           setSearchEmail(searchText);
      };
@@ -33,7 +33,7 @@ const ManageUsers = () => {
                     <input
                          type="text"
                          placeholder="Search users by email"
-                         className="input outline-none border-2 border-neutral-300 rounded-sm w-full focus:border-red-300 py-5 lg:py-6 pl-5"
+                         className="input outline-none border-2 border-neutral-300 rounded-sm w-full focus:border-red-300 py-5 lg:py-5 pl-4"
                          value={searchText}
                          onChange={(e) => setSearchText(e.target.value)}
                     />
@@ -64,18 +64,42 @@ const ManageUsers = () => {
                                              key={user._id}
                                              user={user}
                                              index={index}
+                                             setSelectedUser={setSelectedUser}
                                         />
                                    ))
                               ) : (
                                    <tr>
                                         <td colSpan="5" className="text-center py-10 text-lg text-gray-400">
-                                             No users found
+                                             No users found. Try another email.
                                         </td>
                                    </tr>
                               )}
                          </tbody>
                     </table>
                </div>
+               {/* Modal */}
+               {selectedUser && (
+                    <dialog open className="modal">
+                         <div className="modal-box modal-middle">
+                              <h3 className="font-bold text-xl mb-6">User Details</h3>
+                              <img src={selectedUser.photo || '/src/assets/images/user-pic.png'} className="w-16 h-16 lg:w-20 rounded-full lg:h-20 mb-3" alt="user photo" />
+                              <section className="space-y-2">
+                                   <p><b>Name:</b> {selectedUser.name}</p>
+                                   <p><b>Email:</b> {selectedUser.email}</p>
+                                   <p><b>Role:</b> {selectedUser.role}</p>
+                              </section>
+
+                              <div className="modal-action">
+                                   <button
+                                        onClick={() => setSelectedUser(null)}
+                                        className="btn"
+                                   >
+                                        Close
+                                   </button>
+                              </div>
+                         </div>
+                    </dialog>
+               )}
           </div>
      );
 };

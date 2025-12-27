@@ -12,8 +12,7 @@ const Footer = () => {
                          <h2 className='text-base sm:text-xl lg:text-2xl font-semibold'>CTG Blood Connect</h2>
                     </div>
                     <p className="text-xs sm:text-base text-gray-300 font-semibold">
-                         ACME Industries Ltd.
-                         Providing reliable tech since 1992
+                         Donate Blood, Save Lives in Chittagong
                     </p>
                     <ul className='border-t border-b border-gray-400 border-dashed py-5 my-4 w-full justify-center md:text-base flex gap-8 font-medium '>
                          <li><NavLink to={'/'} className={NavLinkStyles}>Home</NavLink></li>
@@ -22,7 +21,7 @@ const Footer = () => {
                     </ul>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
                </aside>
-             
+
           </footer>
      );
 };

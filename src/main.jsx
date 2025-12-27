@@ -22,6 +22,7 @@ import DashboardLayout from './Layouts/DashboardLayout.jsx';
 import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome.jsx';
 import ManageUsers from './Pages/Dashboard/ManageUsers/ManageUsers.jsx';
 import AdminProfile from './Pages/Dashboard/Profile/AdminProfile.jsx';
+import Forbidden from './Components/ErrorPages/Forbidden.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,12 @@ const router = createBrowserRouter([
       }
     ]
   },
+// forbidden route
+  {
+    path: '/forbidden',
+    element: <Forbidden></Forbidden>
+  },
+
   {
     path: '/dashboard',
     element: <AdminRoute>
