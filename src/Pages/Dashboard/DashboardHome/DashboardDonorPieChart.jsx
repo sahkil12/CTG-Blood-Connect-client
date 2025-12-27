@@ -15,7 +15,7 @@ const DashboardDonorPieChart = ({ availableDonors, unavailableDonors }) => {
   ];
 
   return (
-    <div className="bg-gray-100/50 p-5 rounded-xl shadow border border-neutral-200">
+    <div className="bg-gray-100/50 p-4 rounded-xl shadow border border-neutral-200">
       <h3 className="font-semibold mb-5 text-gray-700">
         Donor Availability
       </h3>

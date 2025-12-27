@@ -31,7 +31,7 @@ const DashboardLayout = () => {
                     </div>
 
                     {/* Page Content */}
-                    <div className="p-4 lg:p-6">
+                    <div className="p-2 lg:p-6">
                          <Outlet />
                     </div>
                </div>

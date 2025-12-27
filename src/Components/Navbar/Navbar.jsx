@@ -111,7 +111,7 @@ const Navbar = () => {
                               </ul>
                          </div>
                          <div className="flex items-center gap-2 md:gap-4">
-                              {!donor && role !== 'admin' && (
+                              {!roleLoading && !donor && role !== 'admin' && (
                                    <Link to="/be-a-donor" className="px-5 py-2 bg-red-400 rounded-lg text-white">
                                         Be a Donor
                                    </Link>
