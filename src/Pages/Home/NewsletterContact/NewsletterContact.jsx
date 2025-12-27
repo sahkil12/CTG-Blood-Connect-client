@@ -1,8 +1,8 @@
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 const NewsletterContact = () => {
      return (
-          <section className="bg-red-50 py-16 px-6 rounded-lg mb-5">
+          <section className="bg-red-50 py-16 px-6 rounded-lg ">
                <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-5">Stay Connected</h2>
                     <p className="text-gray-700 mb-6">
