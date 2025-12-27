@@ -13,13 +13,14 @@ const useRole = () => {
       const res = await axiosSecure.get(`/users/${user.email}`);
       return res.data || {};
     },
+    initialData: undefined
   });
 
-  const role = data?.role || 'user'
+  const role = data?.role
   const isDonor = data?.isDonor || false
   return {
     role,
-    roleLoading: isLoading,
+    roleLoading: isLoading || loading,
     isDonor
   };
 };

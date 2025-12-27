@@ -4,8 +4,8 @@ import useRole from "../../Hooks/useRole";
 import Loader from "../Loader/Loader";
 
 const Forbidden = () => {
-     const { role, isLoading } = useRole();
-     if (isLoading) return <Loader></Loader>
+     const { role, roleLoading } = useRole();
+     if (roleLoading) return <Loader></Loader>
      return (
           <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50/40 to-white px-4">
                <div className="max-w-lg w-full p-8 text-center">

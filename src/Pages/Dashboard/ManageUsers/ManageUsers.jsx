@@ -87,6 +87,7 @@ const ManageUsers = () => {
                                    <p><b>Name:</b> {selectedUser.name}</p>
                                    <p><b>Email:</b> {selectedUser.email}</p>
                                    <p><b>Role:</b> {selectedUser.role}</p>
+                                   <p><b>Donor: </b>{`${selectedUser.isDonor ? 'Yes' : 'No'}`}</p>
                               </section>
 
                               <div className="modal-action">

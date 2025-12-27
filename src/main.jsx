@@ -23,11 +23,13 @@ import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome.jsx';
 import ManageUsers from './Pages/Dashboard/ManageUsers/ManageUsers.jsx';
 import AdminProfile from './Pages/Dashboard/Profile/AdminProfile.jsx';
 import Forbidden from './Components/ErrorPages/Forbidden.jsx';
+import Error404 from './Components/ErrorPages/Error404.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error404></Error404>,
     children: [
       {
         index: true,
@@ -65,7 +67,7 @@ const router = createBrowserRouter([
       }
     ]
   },
-// forbidden route
+  // forbidden route
   {
     path: '/forbidden',
     element: <Forbidden></Forbidden>
@@ -77,6 +79,7 @@ const router = createBrowserRouter([
       <DashboardLayout>
       </DashboardLayout>
     </AdminRoute>,
+    errorElement: <Error404 />,
     children: [
       {
         index: true,
@@ -87,12 +90,16 @@ const router = createBrowserRouter([
         element: <ManageUsers></ManageUsers>
       },
       {
-        path:"profile",
+        path: "profile",
         element: <AdminProfile></AdminProfile>
       }
     ],
-
   },
+  {
+    path: "*",
+    element: <Error404 />
+  }
+
 ]);
 
 const queryClient = new QueryClient()
