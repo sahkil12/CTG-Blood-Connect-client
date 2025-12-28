@@ -10,7 +10,6 @@ https://ctg-blood-connect.web.app/
 - Client: https://github.com/sahkil12/CTG-Blood-Connect-client
 - Server: https://github.com/sahkil12/CTG-Blood-Connect-server
 
----
 
 ## 🚀 Features
 
@@ -83,7 +82,7 @@ https://ctg-blood-connect.web.app/
 ![Donors Listing](./src/assets/images/donors-page.png)
 
 ### 🧾 Become a Donor Page
-![Become a Donor](./src/assets/images/be-a-donor.png)
+![Become a Donor](./src/assets/images/be-a-donor-1.png)
 
 ### 👤 User Profile Page
 ![User Profile](./src/assets/images/profile.png)
@@ -161,31 +160,35 @@ https://ctg-blood-connect.web.app/
 
 1. Clone the repositories:
 
-```bash
 # Client
+
+```bash
 git clone https://github.com/sahkil12/CTG-Blood-Connect-client.git
 cd CTG-Blood-Connect-client
 npm install
 
+```
+
 # Server
+```bash
 git clone https://github.com/sahkil12/CTG-Blood-Connect-server.git
 cd CTG-Blood-Connect-server
 npm install
 
 ```
 
-```bash
-
-Run project
+## Run project
 
 # Client
+```bash
 cd CTG-Blood-Connect-client
 npm run dev
+```
 
 # Server
+```bash
 cd CTG-Blood-Connect-server
 npm run start
-
 ```
 ---
 
