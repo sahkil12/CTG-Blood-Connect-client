@@ -16,7 +16,7 @@ const Footer = () => {
                          <div className="flex flex-col items-center md:items-start gap-3">
                               <img className="w-20" src={logo} alt="CTG Blood Connect Logo" />
                               <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold">CTG Blood Connect</h2>
-                              <p className="text-gray-400/90 text-sm sm:text-base font-medium">
+                              <p className="text-gray-400/90 text-sm sm:text-base font-medium text-center">
                                    Saving Lives, One Donation at a Time Chittagong
                               </p>
 
