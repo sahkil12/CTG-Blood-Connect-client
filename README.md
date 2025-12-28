@@ -20,6 +20,13 @@ https://ctg-blood-connect.web.app/
 - Users can register as blood donors
 - Automatic role update from `user` to `user + isDonor`
 
+🔹 **NEW**
+- Automated email system using **Nodemailer**
+- Welcome email sent when a user registers
+- Congratulations email sent when a user becomes a donor
+
+---
+
 ### 🩸 Donor Management
 - Create donor profile with some details and image
 - Update donor information
@@ -99,6 +106,17 @@ https://ctg-blood-connect.web.app/
 
 ---
 
+## 🎯 Project Goal
+
+**This platform is designed to:**
+
+- Make blood donation faster & easier
+- Reduce emergency delays
+- Encourage people to become donors
+- Help the Chittagong communityDeveloper
+
+---
+
 ## Installation
 
 1. Clone the repositories:
@@ -114,6 +132,12 @@ git clone https://github.com/sahkil12/CTG-Blood-Connect-server.git
 cd CTG-Blood-Connect-server
 npm install
 
+```
+
+```bash
+
+Run project
+
 # Client
 cd CTG-Blood-Connect-client
 npm run dev
@@ -123,3 +147,15 @@ cd CTG-Blood-Connect-server
 npm run start
 
 ```
+
+---
+
+## 👨‍💻 Developer
+
+Mustafa Tazwer Shakil
+Web Developer
+📧 Email: tazwershakilshakil@gmail.com
+
+## 📄 License
+
+This project is licensed under the MIT License.
