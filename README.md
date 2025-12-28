@@ -158,7 +158,7 @@ https://ctg-blood-connect.web.app/
 
 ## Installation
 
-1. Clone the repositories:
+Clone the repositories:
 
  **Client**
 
