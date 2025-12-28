@@ -58,8 +58,6 @@ https://ctg-blood-connect.web.app/
 - Admin-only dashboard access
 - Forbidden (403) page for unauthorized routes
 
----
-
 ## 🧩 Pages
 - Home
 - Donors
@@ -70,7 +68,6 @@ https://ctg-blood-connect.web.app/
 - Manage Users
 - Forbidden Page (403)
 - Error 404 page
----
 ---
 
 ## 🖼️ Screenshots
@@ -158,7 +155,7 @@ https://ctg-blood-connect.web.app/
 
 ## Installation
 
-1. Clone the repositories:
+Clone the repositories:
 
  **Client**
 
