@@ -160,34 +160,47 @@ https://ctg-blood-connect.web.app/
 
 1. Clone the repositories:
 
-# Client
+ **Client**
 
 ```bash
 git clone https://github.com/sahkil12/CTG-Blood-Connect-client.git
+```
+```bash
 cd CTG-Blood-Connect-client
+```
+```bash
 npm install
-
 ```
 
-# Server
+ **Server**
 ```bash
 git clone https://github.com/sahkil12/CTG-Blood-Connect-server.git
+```
+
+```bash
 cd CTG-Blood-Connect-server
+```
+
+```bash
 npm install
 
 ```
 
 ## Run project
 
-# Client
+**Client**
 ```bash
 cd CTG-Blood-Connect-client
+```
+```bash
 npm run dev
 ```
 
-# Server
+**Server**
 ```bash
 cd CTG-Blood-Connect-server
+```
+```bash
 npm run start
 ```
 ---
