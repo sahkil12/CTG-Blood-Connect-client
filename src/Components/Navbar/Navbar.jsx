@@ -14,9 +14,6 @@ const Navbar = () => {
      const { role, roleLoading, isDonor, profile } = useRole()
      const donor = role === 'donor' || isDonor
      const profileImg = profile || null
-     console.log(profile);
-     console.log(profileImg);
-     // ? profile : 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'
      useEffect(() => {
           const handleScroll = () => {
                if (window.scrollY > 0) {
@@ -116,7 +113,7 @@ const Navbar = () => {
                          </div>
                          <div className="flex items-center gap-2 md:gap-4">
                               {!roleLoading && !donor && role !== 'admin' && (
-                                   <Link to="/be-a-donor" className="px-5 py-2 bg-red-400 rounded-lg text-white">
+                                   <Link to="/be-a-donor" className="px-4 text-sm py-2 bg-red-400 rounded-lg text-white">
                                         Be a Donor
                                    </Link>
                               )}
@@ -127,7 +124,6 @@ const Navbar = () => {
                                                   <img
                                                        alt="user"
                                                        className='w-10 h-10 sm:w-12 sm:h-12 rounded-full'
-                                                       // src={ user?.photoURL || profileImg} />
                                                        src={profileImg ? profileImg : user?.photoURL} />
                                              </div>
                                         </div>

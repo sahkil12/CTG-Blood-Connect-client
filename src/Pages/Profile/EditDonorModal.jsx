@@ -215,6 +215,7 @@ const EditDonorModal = ({ donor, closeModal }) => {
                               <div className="flex-1">
                                    <input
                                         type="date"
+                                        placeholder="Update last donate date "
                                         className="input border-2 py-4 md:py-5 px-4 text-base border-gray-300 w-full outline-none focus:border-gray-400"
                                         {...register("lastDonateDate")}
                                    />
