@@ -72,6 +72,46 @@ https://ctg-blood-connect.web.app/
 - Forbidden Page (403)
 - Error 404 page
 ---
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+![Home Page](./src/assets/images/home1.png)
+
+### 🩸 Donors Listing Page
+![Donors Listing](./src/assets/images/donors-page.png)
+
+### 🧾 Become a Donor Page
+![Become a Donor](./src/assets/images/be-a-donor.png)
+
+### 👤 User Profile Page
+![User Profile](./src/assets/images/profile.png)
+
+### 📊 Admin Dashboard
+![Admin Dashboard](./src/assets/images/dashboard-home.png)
+
+### 🚫 Forbidden (403) Page
+![Forbidden Page](./src/assets/images/forbidden.png)
+
+### ❌ Not Found (404) Page
+![404 Error Page](./src/assets/images/404-error.png)
+
+### ℹ️ About Page
+![About Page](./src/assets/images/about.png)
+
+### ✏️ Edit Profile Modal
+![Edit Profile Modal](./src/assets/images/edit-profile.png)
+
+### 🔐 Login Page
+![Login Page](./src/assets/images/login.png)
+
+### 📝 Register Page
+![Register Page](./src/assets/images/register.png)
+
+### 📱 Mobile View 
+![Mobile View](./src/assets/images/mobile-view.png)
+
 
 ## 🛠️ Tech Stack
 
@@ -113,7 +153,7 @@ https://ctg-blood-connect.web.app/
 - Make blood donation faster & easier
 - Reduce emergency delays
 - Encourage people to become donors
-- Help the Chittagong communityDeveloper
+- Help the Chittagong community
 
 ---
 
@@ -147,15 +187,19 @@ cd CTG-Blood-Connect-server
 npm run start
 
 ```
-
 ---
 
 ## 👨‍💻 Developer
 
-Mustafa Tazwer Shakil
-Web Developer
-📧 Email: tazwershakilshakil@gmail.com
+**Mustafa Tazwer Shakil**  
+Web Developer  
+📧 Email: tazwershakilshakil@gmail.com  
+🌐 Portfolio: https://mustafa-tazwer.vercel.app/
 
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+### ❤️ Made with Love
+
+Crafted with care by **Mustafa Tazwer Shakil** to support blood donation in Chittagong.

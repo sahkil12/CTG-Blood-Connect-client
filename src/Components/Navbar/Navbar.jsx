@@ -13,7 +13,10 @@ const Navbar = () => {
      const [scrolled, setScrolled] = useState(false);
      const { role, roleLoading, isDonor, profile } = useRole()
      const donor = role === 'donor' || isDonor
-     const profileImg = profile ? profile : 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'
+     const profileImg = profile || null
+     console.log(profile);
+     console.log(profileImg);
+     // ? profile : 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'
      useEffect(() => {
           const handleScroll = () => {
                if (window.scrollY > 0) {
@@ -82,8 +85,8 @@ const Navbar = () => {
                                              )}
                                              {
                                                   user ? <button onClick={handleLogout} className='btn bg-red-400 text-white w-full gap-2'>Logout <MdOutlineLogout size={18}></MdOutlineLogout> </button>
-                                                   : 
-                                                   <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
+                                                       :
+                                                       <Link to={'/login'} className='btn bg-red-400 text-white w-full'>Login</Link>
                                              }
                                         </div>
                                    </div>
@@ -124,7 +127,8 @@ const Navbar = () => {
                                                   <img
                                                        alt="user"
                                                        className='w-10 h-10 sm:w-12 sm:h-12 rounded-full'
-                                                       src={profileImg || user?.photoURL } />
+                                                       // src={ user?.photoURL || profileImg} />
+                                                       src={profileImg ? profileImg : user?.photoURL} />
                                              </div>
                                         </div>
                                         <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-50 mt-3 md:w-60 shadow">
@@ -135,7 +139,7 @@ const Navbar = () => {
                                              <li className="mt-16">
                                                   {!roleLoading && (donor || role === "admin") && (
                                                        <Link to={'/profile'} className="btn bg-neutral-200 mb-4 text-sm ">
-                                                            Profile <FaRegUserCircle size={18}/>
+                                                            Profile <FaRegUserCircle size={18} />
                                                        </Link>
                                                   )}
                                                   <button onClick={handleLogout} className="btn bg-red-400 text-white text-sm ">
