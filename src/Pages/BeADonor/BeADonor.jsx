@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { bloodGroups, genders, areas } from "../../Utility/blood-info";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQueryClient } from "@tanstack/react-query";
+
 // imgbb setup
 const image_hosting_key = import.meta.env.VITE_IMGBB_KEY
 const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -17,6 +19,7 @@ const BeADonor = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
+  const queryClient = useQueryClient();
 
   const onSubmit = async (data) => {
     try {
@@ -59,6 +62,7 @@ const BeADonor = () => {
       const res = await axiosSecure.post('/donors', donorData)
       if (res?.data.insertedId) {
         toast.success("Donor registered successfully");
+        queryClient.invalidateQueries(["user-role", user?.email]);
         reset();
         navigate("/");
       }
@@ -147,7 +151,7 @@ const BeADonor = () => {
                 />
                 {errors.phone && <p className="text-red-500 text-sm mt-1">Valid phone number required</p>}
               </div>
-                {/* Age */}
+              {/* Age */}
               <div className="flex-1 flex flex-col gap-2">
                 <label className="font-medium text-sm text-gray-700">Your Age</label>
                 <input
@@ -161,7 +165,7 @@ const BeADonor = () => {
                     })}
                 />
                 {errors.age && <p className="text-red-500 text-sm mt-1">Donor Age Must be 18+</p>}
-              </div>   
+              </div>
             </div>
             {/* 2 column */}
             <div className="flex flex-col md:flex-row gap-4">
