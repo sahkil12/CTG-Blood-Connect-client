@@ -11,8 +11,9 @@ const Navbar = () => {
      const { user, logOutUser } = useAuth()
      const navigate = useNavigate();
      const [scrolled, setScrolled] = useState(false);
-     const { role, roleLoading, isDonor } = useRole()
+     const { role, roleLoading, isDonor, profile } = useRole()
      const donor = role === 'donor' || isDonor
+     const profileImg = profile ? profile : 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'
      useEffect(() => {
           const handleScroll = () => {
                if (window.scrollY > 0) {
@@ -123,7 +124,7 @@ const Navbar = () => {
                                                   <img
                                                        alt="user"
                                                        className='w-10 h-10 sm:w-12 sm:h-12 rounded-full'
-                                                       src={user?.photoURL || 'https://i.ibb.co.com/BKLSqwdN/user-pic.png'} />
+                                                       src={profileImg || user?.photoURL } />
                                              </div>
                                         </div>
                                         <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-50 mt-3 md:w-60 shadow">

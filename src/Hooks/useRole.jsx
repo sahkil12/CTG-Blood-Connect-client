@@ -15,13 +15,14 @@ const useRole = () => {
     },
     initialData: undefined
   });
-
+  const profile = data?.profileImage
   const role = data?.role
   const isDonor = data?.isDonor || false
   return {
     role,
     roleLoading: isLoading || loading,
-    isDonor
+    isDonor,
+    profile
   };
 };
 
