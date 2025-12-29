@@ -27,7 +27,7 @@ const DonorDetailsModal = ({ donor, onClose }) => {
         {/* Close */}
         <button
           onClick={onClose}
-          className="btn btn-md btn-circle btn-ghost absolute right-2 top-2"
+          className="btn btn-lg btn-circle btn-ghost absolute right-2 top-2"
         >
           ✕
         </button>
@@ -35,7 +35,7 @@ const DonorDetailsModal = ({ donor, onClose }) => {
         <div className="flex flex-col items-center text-center">
           <img
             src={profileImage}
-            className="w-24 h-24 rounded-full object-cover mb-3"
+            className="w-28 h-28 rounded-full object-cover mb-3.5"
           />
           <h3 className="font-bold text-xl">{name}</h3>
           <p className="text-sm text-base-content/70">{gender}</p>
