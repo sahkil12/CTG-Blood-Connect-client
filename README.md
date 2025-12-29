@@ -4,7 +4,7 @@ CTG Blood Connect is a web-based blood donor platform designed to help people in
 The mission is simple: **connect donors and seekers to save lives**.
 
 ## 🌐 Live Project
-https://ctg-blood-connect.web.app/
+🔗 https://ctg-blood-connect.web.app/
 
 ## 📦 Repositories
 - Client: https://github.com/sahkil12/CTG-Blood-Connect-client
@@ -23,8 +23,6 @@ https://ctg-blood-connect.web.app/
 - Automated email system using **Nodemailer**
 - Welcome email sent when a user registers
 - Congratulations email sent when a user becomes a donor
-
----
 
 ### 🩸 Donor Management
 - Create donor profile with some details and image
@@ -90,9 +88,6 @@ https://ctg-blood-connect.web.app/
 ### 🚫 Forbidden (403) Page
 ![Forbidden Page](./src/assets/images/forbidden.png)
 
-### ❌ Not Found (404) Page
-![404 Error Page](./src/assets/images/404-error.png)
-
 ### ℹ️ About Page
 ![About Page](./src/assets/images/about.png)
 
@@ -116,17 +111,19 @@ https://ctg-blood-connect.web.app/
 - React Router DOM
 - Tailwind CSS
 - DaisyUI
-- TanStack Query (React Query)
-- Firebase Authentication
-- Firebase deploy
+- Axios
+- TanStack Query
+- Firebase Authentication && deploy
 - React Hook Form
 - Recharts
 - SweetAlert2
 - React Hot Toast
 - dayjs
+- lottie-react
 
 ### Backend
 - Node.js
+- Cors
 - Express.js
 - MongoDB
 - JWT Authentication
@@ -140,22 +137,20 @@ https://ctg-blood-connect.web.app/
 - Server Hosting: Vercel
 - Database: MongoDB Atlas
 
----
 
 ## 🎯 Project Goal
 
 **This platform is designed to:**
 
-- Make blood donation faster & easier
+- Make blood donation faster & easier in Chittagong City
 - Reduce emergency delays
 - Encourage people to become donors
 - Help the Chittagong community
 
----
 
-## Installation
+### Installation
 
-Clone the repositories:
+## Clone the repositories
 
  **Client**
 

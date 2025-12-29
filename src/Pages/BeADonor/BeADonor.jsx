@@ -20,7 +20,7 @@ const BeADonor = () => {
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate()
   const queryClient = useQueryClient();
-
+  // submit form
   const onSubmit = async (data) => {
     try {
       if (!user) {
@@ -54,7 +54,7 @@ const BeADonor = () => {
         lastDonateDate: data.lastDonateDate || null,
         address: data.address,
         profileImage: imageUrl,
-        email: user.email,
+        email: user?.email,
         status: "available",
         age: parseInt(data.age)
       };
@@ -225,7 +225,7 @@ const BeADonor = () => {
             </button>
           </form>
         </div>
-        {/* Right: Animation */}
+        {/* Right: lottie image Animation */}
         <div className="hidden lg:flex justify-end">
           <Lottie className="max-w-lg 2xl:max-w-2xl" animationData={donorAnimation} loop={true} />
         </div>

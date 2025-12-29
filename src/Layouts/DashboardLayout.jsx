@@ -29,13 +29,11 @@ const DashboardLayout = () => {
                               <h2 className="text-lg font-semibold">Admin Dashboard</h2>
                          </div>
                     </div>
-
                     {/* Page Content */}
                     <div className="p-2 lg:p-6">
                          <Outlet />
                     </div>
                </div>
-
                {/* Sidebar */}
                <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
