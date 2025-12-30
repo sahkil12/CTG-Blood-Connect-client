@@ -4,6 +4,7 @@ import DonorCard from "../Home/DonorList/DonorCard";
 import DonorSkeleton from "../../Components/DonorSkeleton/DonorSkeleton";
 import DonorDetailsModal from "../Home/DonorList/DonorDetailsModal";
 import useDonors from '../../Hooks/useDonors';
+import { Helmet } from "react-helmet";
 
 const Donors = () => {
      const [page, setPage] = useState(1);
@@ -24,6 +25,9 @@ const Donors = () => {
 
      return (
           <section className="bg-base-100 min-h-screen my-10 lg:my-14">
+               <Helmet>
+                    <title>Donors | CTG Blood Connect</title>
+               </Helmet>
                {/* Search */}
                <SearchSection onSearch={handleSearch} />
                {/* Cards */}
