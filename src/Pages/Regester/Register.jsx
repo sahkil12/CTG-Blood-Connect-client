@@ -136,9 +136,6 @@ const Register = () => {
                                         )}
                                    </span>
                               </fieldset>
-                              <div className="flex justify-start pb-6 underline text-gray-500 font-medium">
-                                   <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-                              </div>
                               {error && (
                                    <p className="text-red-500 text-sm mb-3">{error}</p>
                               )}
