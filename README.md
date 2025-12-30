@@ -120,6 +120,7 @@ The mission is simple: **connect donors and seekers to save lives**.
 - React Hot Toast
 - dayjs
 - lottie-react
+- react-helmet
 
 ### Backend
 - Node.js
