@@ -113,7 +113,7 @@ const Navbar = () => {
                          </div>
                          <div className="flex items-center gap-2 md:gap-4">
                               {!roleLoading && !donor && role !== 'admin' && (
-                                   <Link to="/be-a-donor" className="px-4 text-sm py-2 bg-red-400 rounded-lg text-white">
+                                   <Link to="/be-a-donor" className="px-5 text-sm md:text-base py-2  font-medium bg-red-400 rounded-lg text-white">
                                         Be a Donor
                                    </Link>
                               )}
@@ -143,7 +143,7 @@ const Navbar = () => {
                                                   </button>
                                              </li>
                                         </ul>
-                                   </div> : <Link to={'/login'}>  <button className='cursor-pointer transition-all duration-300 px-5 text-xs md:text-base md:px-7 font-medium py-2 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-lg'>Login</button></Link>
+                                   </div> : <Link to={'/login'}>  <button className='cursor-pointer transition-all duration-300 px-5 text-xs md:text-base md:px-7 font-medium py-2 md:py-1.5 bg-white border-2 border-red-400 text-black hover:bg-red-400 hover:text-gray-100 rounded-lg'>Login</button></Link>
                               }
                          </div>
                     </div>
