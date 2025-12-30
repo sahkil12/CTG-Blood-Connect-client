@@ -9,6 +9,7 @@ import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
 import userImage from '../../assets/images/user-pic.png';
+import { Helmet } from "react-helmet";
 
 const Register = () => {
      const { createUser, googleCreate, updateUserProfile, user } = useAuth()
@@ -74,6 +75,9 @@ const Register = () => {
 
      return (
           <div className="min-h-[calc(100vh-97px)] bg-base-100 flex items-center justify-center px-3 py-12">
+               <Helmet>
+                    <title>Register | CTG Blood Connect</title>
+               </Helmet>
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
                     {/* left form */}
                     <div className="px-2 md:px-10 max-w-xl w-full mx-auto">

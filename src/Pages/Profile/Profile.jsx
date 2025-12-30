@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import EditDonorModal from "./EditDonorModal";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
      const { user, loading } = useAuth();
@@ -87,6 +88,9 @@ const Profile = () => {
      }
      return (
           <div className="max-w-6xl mx-auto px-4 py-8 lg:py-14">
+               <Helmet>
+                    <title>{user?.displayname} Profile | CTG Blood Connect</title>
+               </Helmet>
                <h2 className="text-3xl font-bold mb-8">My Profile</h2>
 
                {donor ? (

@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import donorImage from '../../assets/images/about-donor.jpg'
+import { Helmet } from "react-helmet";
 const About = () => {
   return (
     <section className="bg-base-100">
+      <Helmet>
+        <title>About | CTG Blood Connect</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 py-10 md:py-16 space-y-20 md:space-y-28">
         {/* Intro */}
         <div className="text-center max-w-3xl mx-auto">

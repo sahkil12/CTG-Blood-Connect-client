@@ -1,8 +1,9 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaUsers, FaTint, FaHome, FaBars, FaRegUserCircle } from "react-icons/fa";
+import { FaUsers, FaHome, FaBars, FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
 import useAuth from "../Hooks/useAuth";
 import logo from '../assets/images/logo.png'
+import { Helmet } from "react-helmet";
 
 const DashboardLayout = () => {
      const { logOutUser } = useAuth();
@@ -14,6 +15,9 @@ const DashboardLayout = () => {
 
      return (
           <div className="drawer lg:drawer-open">
+               <Helmet>
+                    <title>Dashboard | CTG Blood Connect</title>
+               </Helmet>
                {/* Drawer for small device */}
                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                {/* Main Content */}
@@ -53,18 +57,18 @@ const DashboardLayout = () => {
                               <ul className="menu p-4 gap-4 w-full mt-3">
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard" end className={navLinkClass}>
-                                             <FaHome size={18}/> Dashboard Home
+                                             <FaHome size={18} /> Dashboard Home
                                         </NavLink>
                                    </li>
 
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard/manage-users" className={navLinkClass}>
-                                             <FaUsers size={18}/> Manage Users
+                                             <FaUsers size={18} /> Manage Users
                                         </NavLink>
                                    </li>
                                    <li>
                                         <NavLink onClick={() => document.getElementById("dashboard-drawer").checked = false} to="/dashboard/Profile" className={navLinkClass}>
-                                             <FaRegUserCircle size={18}/> Profile
+                                             <FaRegUserCircle size={18} /> Profile
                                         </NavLink>
                                    </li>
                               </ul>
@@ -74,7 +78,7 @@ const DashboardLayout = () => {
                                    onClick={logOutUser}
                                    className="text-white hover:bg-red-500/80 cursor-pointer py-2 font-bold rounded-sm bg-red-400 w-full flex gap-2.5 items-center justify-center"
                               >
-                                   Logout <MdOutlineLogout size={18}/>
+                                   Logout <MdOutlineLogout size={18} />
                               </button>
                          </div>
                     </aside>
