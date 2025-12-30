@@ -115,7 +115,7 @@ const Register = () => {
                                    />
                               </fieldset>
                               {/* password */}
-                              <fieldset className="flex flex-col space-y-2 mb-2 relative">
+                              <fieldset className="flex flex-col space-y-2 mb-5 relative">
                                    <label className="font-medium text-gray-800">Your Password</label>
                                    <input
                                         type={showPassword ? "text" : "password"}
