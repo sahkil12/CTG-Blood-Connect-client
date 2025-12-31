@@ -186,7 +186,6 @@ cd CTG-Blood-Connect-client
 ```bash
 npm run dev
 ```
-
 **Server**
 ```bash
 cd CTG-Blood-Connect-server
