@@ -103,11 +103,10 @@ The mission is simple: **connect donors and seekers to save lives**.
 ### 📱 Mobile View 
 ![Mobile View](./src/assets/images/mobile-view.png)
 
-
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React (Vite)
+- React
 - React Router DOM
 - Tailwind CSS
 - DaisyUI
@@ -137,7 +136,6 @@ The mission is simple: **connect donors and seekers to save lives**.
 - Client Hosting: Firebase
 - Server Hosting: Vercel
 - Database: MongoDB Atlas
-
 
 ## 🎯 Project Goal
 
