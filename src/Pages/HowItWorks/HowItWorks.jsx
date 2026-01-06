@@ -39,7 +39,7 @@ const HowItWorks = () => {
         </div>
         {/* cards data*/}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-          {cardDetails.map((card, index) => {
+          {cardDetails?.map((card, index) => {
             const Icon = card.icon;
             return (
               <div

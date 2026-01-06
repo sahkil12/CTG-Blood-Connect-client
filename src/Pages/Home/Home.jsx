@@ -5,6 +5,7 @@ import SearchSection from "./SearchSection/SearchSection";
 import useDonors from "../../Hooks/useDonors";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import { Helmet } from "react-helmet";
+import NewsletterContact from "./NewsletterContact/NewsletterContact";
 
 const Home = () => {
      const [filters, setFilters] = useState({
@@ -28,6 +29,7 @@ const Home = () => {
                <SearchSection onSearch={handleSearch}></SearchSection>
                <DonorList donors={donors.donors} loading={isLoading}></DonorList>
                <HowItWorks></HowItWorks>
+               <NewsletterContact></NewsletterContact>
           </div>
      );
 };
