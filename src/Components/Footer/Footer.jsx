@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 import logo from '../../../public/logo.png';
 
 const Footer = () => {
@@ -22,11 +23,11 @@ const Footer = () => {
 
                               {/* Social Media Icons Inline */}
                               <div className="flex gap-5 mt-3">
-                                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-red-500 p-3 rounded-full transition-colors duration-200">
+                                   <a href="https://www.facebook.com/share/g/1DNX9kaZkm/" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-red-500 p-3 rounded-full transition-colors duration-200">
                                         <FaFacebookF size={18} />
                                    </a>
-                                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-red-500 p-3 rounded-full transition-colors duration-200">
-                                        <FaTwitter size={18} />
+                                   <a href="https://x.com/CTGBLOODBANK?s=20" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-red-500 p-3 rounded-full transition-colors duration-200">
+                                        <FaXTwitter size={18} />
                                    </a>
                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 hover:bg-red-500 p-3 rounded-full transition-colors duration-200">
                                         <FaLinkedinIn size={18} />
