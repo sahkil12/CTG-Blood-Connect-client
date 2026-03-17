@@ -63,7 +63,7 @@ const DonorCard = ({ donor, setSelectedDonor }) => {
         {/* details button */}
         <button
           onClick={() => setSelectedDonor(donor)}
-          className="flex-1 text-xs sm:text-base border border-gray-300 hover:bg-gray-100 font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"
+          className="flex-1 cursor-pointer text-xs sm:text-base border border-gray-300 hover:bg-gray-100 font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2"
         >
           <FaInfoCircle />
           Details

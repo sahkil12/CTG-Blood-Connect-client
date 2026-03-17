@@ -9,6 +9,7 @@ import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
 import { Helmet } from "react-helmet";
+import { FaUserShield } from "react-icons/fa";
 
 const Login = () => {
      const { loginUser, googleCreate, user } = useAuth()
@@ -46,13 +47,27 @@ const Login = () => {
                setError(error.message);
           }
      }
+     // admin role login 
+     const handleAdminLogin = () => {
+          const email = "ctgbloodconnectadmin@gmail.com"
+          const password = "bloodAdmin1";
+          loginUser(email, password)
+               .then(() => {
+                    toast.success("You are Successfully Login As a Admin")
+                    navigate('/')
+               })
+               .catch((error) => {
+                    setError(error.message)
+               });
+     };
+
      if (user) {
           <Loader></Loader>
           return <Navigate to={'/'}></Navigate>
      }
      return (
           <div className="min-h-[calc(100vh-97px)] bg-base-100 flex items-center justify-center px-3 py-12">
-                <Helmet>
+               <Helmet>
                     <title>Login | CTG Blood Connect</title>
                </Helmet>
                <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-center">
@@ -109,16 +124,24 @@ const Login = () => {
                               <button className="btn bg-red-400 text-white rounded-lg py-6 w-full text-lg">
                                    Login
                               </button>
+                              <div className="flex justify-center flex-col text-center gap-3 pt-4 items-center">
+                                   <p className="text-[15px] font-semibold text-gray-700">Quick Login </p>
+                                   <button
+                                        type="button"
+                                        onClick={handleAdminLogin}
+                                        className="text-white bg-red-400 rounded-md flex justify-center items-center w-full gap-2 px-6 py-2 font-bold cursor-pointer">
+                                        <span className="p-2 text-md bg-slate-900 text-white rounded-full"> <FaUserShield /></span>
+                                        Admin
+                                   </button>
+                              </div>
                          </form>
                          <span className="font-medium text-base text-gray-500">Don't have an account? <Link to={'/register'}><b className="text-red-400 hover:underline">Register</b></Link> </span>
-
                          {/* Divider */}
                          <div className="divider my-6 text-gray-500">OR Login With </div>
-
                          {/* Google Login */}
                          < button
                               onClick={handleGoogleRegister}
-                              className="flex rounded-lg justify-center items-center gap-2 w-full text-base font-bold bg-gray-200 py-1.5 border text-black border-[#e5e5e5]" >
+                              className="flex rounded-lg justify-center items-center gap-2 w-full text-base font-bold bg-gray-200 cursor-pointer py-1.5 border text-black border-[#e5e5e5]" >
                               <span className="py-2"> <FcGoogle size={20}></FcGoogle></span>
                               Login with Google
                          </button >

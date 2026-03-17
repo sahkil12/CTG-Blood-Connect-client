@@ -16,7 +16,7 @@ const NewsletterContact = () => {
                          />
                          <button
                               type="button"
-                              className="bg-red-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-red-500/80 transition"
+                              className="bg-red-400 cursor-pointer text-white font-semibold px-6 py-2 rounded-md hover:bg-red-500/80 transition"
                          >
                               Subscribe
                          </button>

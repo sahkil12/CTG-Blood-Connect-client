@@ -218,7 +218,7 @@ const BeADonor = () => {
             {/* Submit */}
             <button
               type="submit"
-              className={`bg-red-400 text-white w-full py-2.5 font-semibold rounded-sm mt-4 `}
+              className={`bg-red-400 cursor-pointer text-white w-full py-2.5 font-semibold rounded-sm mt-4 `}
               disabled={uploading}
             >
               {uploading ? <span className="loading loading-dots loading-lg"></span> : "Register as Donor"}
