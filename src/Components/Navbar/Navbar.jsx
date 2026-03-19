@@ -127,10 +127,10 @@ const Navbar = () => {
                                                        src={profileImg ? profileImg : user?.photoURL} />
                                              </div>
                                         </div>
-                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-50 mt-3 md:w-72 shadow">
+                                        <ul className="menu menu-sm dropdown-content border border-neutral-300 bg-gray-50 rounded-box z-50 mt-3 w-60 md:w-72 shadow">
                                              <li className="text-center">
                                                   <p className="font-semibold text-base md:text-lg break-all whitespace-normal">{user?.displayName}</p>
-                                                  <p className="text-sm text-gray-600 break-all whitespace-normal">{user?.email}</p>
+                                                  <p className="text-xs sm:text-sm text-gray-600 break-all whitespace-normal">{user?.email}</p>
                                              </li>
                                              <li className="mt-16">
                                                   {!roleLoading && (donor || role === "admin") && (
